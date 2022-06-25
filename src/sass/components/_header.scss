@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.custom-link:hover {
+    color: red;
+    text-decoration-color: red;
+}
+
+.custom-item:hover {
+    color: white;
+    background-color: red;
+    text-decoration-color: red;
+}
