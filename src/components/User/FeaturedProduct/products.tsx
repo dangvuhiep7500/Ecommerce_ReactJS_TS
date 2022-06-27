@@ -11,14 +11,14 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 type ProductProps = {
   id: string;
   img: string;
-  des: string;
+  title: string;
   price: number;
 };
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
   currency: "VND",
 });
-const Product: FC<ProductProps> = ({ img, des, price,id }) => {
+const Product: FC<ProductProps> = ({ img, title, price,id }) => {
   return (
     <Card sx={{ width: 215, margin: 0.95 }}
     
@@ -32,7 +32,7 @@ const Product: FC<ProductProps> = ({ img, des, price,id }) => {
           alt={img}
         />
         <Typography style={{ fontWeight: "bold", padding: 5 }}>
-          {des}
+          {title}
         </Typography>
       </CardActionArea>
       <Stack direction="row" sx= {{ display: "flex",

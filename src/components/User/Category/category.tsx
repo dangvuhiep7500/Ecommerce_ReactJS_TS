@@ -11,9 +11,12 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Slider from "react-slick";
-
+interface CatProps{
+  categoryName: string;
+  categoryImage: string
+}
 const Category: FC = () => {
-  const [category, setCategory] = useState<any[]>([]);
+  const [category, setCategory] = useState<CatProps[]>([]);
   useEffect(() => {
     axios.get("http://localhost:5000/categories/category").then((res) => {
       setCategory(res.data);

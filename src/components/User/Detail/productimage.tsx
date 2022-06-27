@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper";
 import { useState } from "react";
-
-const ProductImagesSlider = (props: { images: any[] }) => {
+export interface props {
+  images: string[];
+}
+const ProductImagesSlider = ({ images }: props ) => {
   const [activeThumb, setActiveThumb] = useState<any>(null);
 
   return (
@@ -17,7 +19,7 @@ const ProductImagesSlider = (props: { images: any[] }) => {
         thumbs={{ swiper: activeThumb }}
         className="product-images-slider"
       >
-        {props.images.map((item, index) => (
+        {images.map((item, index) => (
           <SwiperSlide key={index}>
             <img src={item} alt="product images" />
           </SwiperSlide>
@@ -26,11 +28,11 @@ const ProductImagesSlider = (props: { images: any[] }) => {
       <Swiper
         onSwiper={setActiveThumb}
         loop={false}
-        slidesPerView= {6}
+        slidesPerView={6}
         modules={[Navigation, Thumbs]}
         className="product-images-slider-thumbs"
       >
-        {props.images.map((item, index) => (
+        {images.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="product-images-slider-thumbs-wrapper">
               <img src={item} alt="product images" />

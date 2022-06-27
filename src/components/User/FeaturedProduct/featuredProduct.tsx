@@ -83,7 +83,7 @@ const FeaturedProduct: FC = () => {
       <Slider {...settings}>
         {Value.map((item) => {
           return (
-            <Product key={item.des} id={item._id} img={item.img} des={item.des} price={item.price} />
+            <Product key={item._id} id={item._id} img={item.img} title={item.des} price={item.price} />
           );
         })}
       </Slider>
