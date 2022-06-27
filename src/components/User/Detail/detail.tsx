@@ -10,8 +10,6 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Detail from "../../../pages/User/detail";
-import { IProduct } from "../../../models";
 const Value = [
   "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn_73d5b3c3b48a4ba39b82cd72c13d50c7.jpg",
   "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn-1_014e4d7c374f4e308b4a7f7a599d7afe.jpg",
