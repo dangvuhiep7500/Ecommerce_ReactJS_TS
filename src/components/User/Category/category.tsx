@@ -11,18 +11,22 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Slider from "react-slick";
-interface CatProps{
-  categoryName: string;
-  categoryImage: string
-}
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../../hooks";
+import CategoryItem from "./categoryItem";
+// interface CatProps{
+//   _id: string;
+//   categoryName: string;
+//   categoryImage: string
+// }
 const Category: FC = () => {
-  const [category, setCategory] = useState<CatProps[]>([]);
-  useEffect(() => {
-    axios.get("http://localhost:5000/categories/category").then((res) => {
-      setCategory(res.data);
-    });
-  }, []);
-  console.log(category);
+  // const [category, setCategory] = useState<CatProps[]>([]);
+  // useEffect(() => {
+  //   axios.get("http://localhost:5000/categories/category").then((res) => {
+  //     setCategory(res.data);
+  //   });
+  // }, []);
+  // console.log(category);
 
   const settings = {
     className: "slider",
@@ -60,13 +64,18 @@ const Category: FC = () => {
       des: "",
     },
   ];
+  const { isLoading, filteredCategories } = useAppSelector(
+    (state) => state.categoriesReducer
+  );
+  console.log(filteredCategories);
+
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2}>
         <Grid item xs={2.3}>
           <Box>
             <List>
-              {category.map((cat, index) => {
+              {/* {category.map((cat, index) => {
                 return (
                   <ListItem disablePadding key={index}  className="custom-item">
                     <ListItemButton>
@@ -77,6 +86,11 @@ const Category: FC = () => {
                       />
                     </ListItemButton>
                   </ListItem>
+                );
+              })} */}
+              {filteredCategories.map((cate) => {
+                return (
+                  <CategoryItem key= {cate._id} category={cate} />
                 );
               })}
             </List>

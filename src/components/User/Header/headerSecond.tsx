@@ -1,9 +1,11 @@
-import { FC } from "react";
-// import { useNavigate } from "react-router-dom";
-import { Box, Button, Container, Toolbar } from "@mui/material";
+import { FC, useState } from "react";
+import { Box, Button, Container, Menu, MenuItem, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 // import { makeStyles } from "@mui/styles";
 import PaymentIcon from "@mui/icons-material/Payment";
+import { useAppSelector } from "../../../hooks";
+import CategoryItem from "../Category/categoryItem";
+import SettingsIcon from '@mui/icons-material/Settings';
 // const useStyles = makeStyles({
 //   button: {
 //     backgroundColor: '#3c52b2',
@@ -14,73 +16,111 @@ import PaymentIcon from "@mui/icons-material/Payment";
 //   },
 // }})
 const HeaderBot: FC = () => {
+  const [anchorEl, setAnchorEl] = useState<any>(null);
+
+  function handleClick(event: React.ChangeEvent<unknown>) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+  const { isLoading, filteredCategories } = useAppSelector(
+    (state) => state.categoriesReducer
+  );
   // const classes = useStyles();
   return (
-    <Container maxWidth="lg">
-      <Toolbar
-        disableGutters
-        sx={{ justifyContent: "center", width: "max-content" }}
-      >
-        {listProduct()}
-        <Box sx={{ border: 1, marginLeft:2, borderRadius: '5px' }} className="custom-item">
-          <Button
-            color="inherit"
-            startIcon={<PaymentIcon />}
-            size = "small"
-            sx={{paddingLeft:2 , paddingRight:2}}
-          >
-            Hướng dẫn thanh toán
-          </Button>
-        </Box>
-        <Box sx={{ border: 1, marginLeft:2, borderRadius: '5px' }} className="custom-item">
-          <Button
-            color="inherit"
-            size = "small"
-            startIcon={<PaymentIcon />}
-            sx={{paddingLeft:2 , paddingRight:2}}
-          >
-            Hướng dẫn thanh toán
-          </Button>
-        </Box>
-        <Box sx={{ border: 1, marginLeft:2, borderRadius: '5px' }} className="custom-item">
-          <Button
-            color="inherit"
-            size = "small"
-            startIcon={<PaymentIcon />}
-            sx={{paddingLeft:2 , paddingRight:2}}
-          >
-            Hướng dẫn thanh toán
-          </Button>
-        </Box>
-        <Box sx={{ border: 1, marginLeft:2, borderRadius: '5px' }} className="custom-item">
-          <Button
-            color="inherit"
-            size = "small"
-            startIcon={<PaymentIcon />}
-            sx={{paddingLeft:2 , paddingRight:2}}
-          >
-            Hướng dẫn thanh toán
-          </Button>
-        </Box>
-      </Toolbar>
-    </Container>
+    <div className="headerSecond">
+      <Container maxWidth="lg">
+        <Toolbar disableGutters>
+          <Box className="headerSecond_listcate">
+            <Button
+              className="headerSecond_button-item"
+              color="inherit"
+              startIcon={<MenuIcon />}
+              size="small"
+              aria-owns={anchorEl ? "simple-menu" : undefined}
+              aria-haspopup="true"
+              onClick={handleClick}
+              onMouseOver={handleClick}
+            >
+              Danh mục sản phẩm
+            </Button>
+            <Menu
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              transformOrigin={{ vertical: "top", horizontal: "left" }}
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}
+            >
+              {filteredCategories.map((cate,index) => {
+                return (
+              <MenuItem  key= {cate._id} onClick={handleClose} sx = {{ padding: 0 ,marginTop: 1}}>
+                  <CategoryItem category={cate} />
+              </MenuItem>
+                );
+              })}
+             
+            </Menu>
+            {/* <div className="dropdown">
+            <div
+            className="dropbtn"
+              style={{
+                display: "flex",
+                width: "auto",
+              }}
+            >
+              <MenuIcon />
+              <span>Danh mục sản phẩm</span>
+            </div>
+              <div className="dropdown-content">
+              <MenuItem>Profile</MenuItem>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </div> */}
+          </Box>
+          <Box className="headerSecond_custom-item">
+            <Button
+              className="headerSecond_button-item"
+              color="inherit"
+              startIcon={<SettingsIcon />}
+              size="small"
+              sx={{ paddingLeft: 2, paddingRight: 2 }}
+            >
+              Xây dựng cấu hình
+            </Button>
+          </Box>
+          <Box className="headerSecond_custom-item">
+            <Button
+              className="headerSecond_button-item"
+              color="inherit"
+              startIcon={<PaymentIcon />}
+              size="small"
+              sx={{ paddingLeft: 2, paddingRight: 2 }}
+            >
+              Chính sách vận chuyển
+            </Button>
+          </Box>
+          <Box className="headerSecond_custom-item">
+            <Button
+              className="headerSecond_button-item"
+              color="inherit"
+              startIcon={<PaymentIcon />}
+              size="small"
+              sx={{ paddingLeft: 2, paddingRight: 2 }}
+            >
+              Đổi trả và bảo hành
+            </Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </div>
   );
-
-  function listProduct() {
-    return (
-      <Box sx={{ border: 1, borderRadius: '5px', p: 0.5 }}>
-        <div
-          style={{
-            display: "flex",
-            width: "auto",
-          }}
-        >
-          <MenuIcon />
-          <span>Danh mục sản phẩm</span>
-        </div>
-      </Box>
-    );
-  }
 };
 
 export default HeaderBot;

@@ -38,17 +38,6 @@ const Featuredlist: FC = () => {
       <Grid container spacing={3}>
         {Value.map((item, i) => {
           return (
-            // <Grid item xs={3} key={i}>
-            //   <Box>
-            //     <div>
-            //       <img
-            //         src={`${item.img}`}
-            //         style={{ width: "-webkit-fill-available" }}
-            //       />
-            //     </div>
-            //     <Typography align="center">{item.des}</Typography>
-            //   </Box>
-            // </Grid>
             <Grid item xs={3} key={i}>
              <CardActionArea>
              <CardMedia

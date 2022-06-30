@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import ProductDetail from "../../components/User/Detail/detail";
+import ProductDetail from "../../components/User/ProductDetail/product-detail";
 import Footer from "../../components/User/Footer/footer";
 import LayoutHeader from "../../components/User/Layout/layout";
 

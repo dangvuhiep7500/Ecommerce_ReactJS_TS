@@ -1,11 +1,81 @@
 .header {
-    display: flex;
-    justify-content: center;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    &_navbarLogo {
+        cursor: pointer;
+    }
+    &_img {
+        width: 250px;
+        height: 60px;
+        margin: 20px;
+        @media (max-width: 1200px) {
+            width: 200px;
+            height: 50px;
+            margin: 20px;
+        }
+    }
+    &_search {
+        display: flex;
+        padding: 0.1rem 0.3rem;
+        width: 20rem;
+        @media (max-width: 1200px) {
+            width: 14rem;
+            padding: 0.1rem 0.1rem;
+        }
+        @media (max-width: 992px) {
+            width: 25rem;
+        }
+    }
+    &_input_search {
+        margin-left: 5px;
+        flex: 1
+    }
+    &_custom-link:hover {
+        color: red;
+        text-decoration-color: red;
+    }
+    &_typography {
+        @media (max-width: 1200px) {
+            width: max-content;
+            font-size: smaller;
+        }
+        @media (max-width: 992px) {
+            display: none;
+        }
+    }
+}
+
+.headerSecond {
+    @media (max-width: 992px) {
+        display: none;
+    }
+    &_listcate {
+        border: 1px solid;
+        border-radius: 5px;
+        @media (max-width: 1200px) {
+            width: max-content;
+            font-size: small;
+        }
+    }
+    &_custom-item {
+        margin-left: 1rem;
+        border: 1px solid;
+        border-radius: 5px;
+    }
+    &_button-item {}
+    &_custom-item:hover {
+        color: white;
+        background-color: red;
+        text-decoration-color: red;
+    }
 }
 
 .custom-link:hover {
     color: red;
     text-decoration-color: red;
+}
+
+.custom-link {
+    cursor: pointer;
 }
 
 .custom-item:hover {
