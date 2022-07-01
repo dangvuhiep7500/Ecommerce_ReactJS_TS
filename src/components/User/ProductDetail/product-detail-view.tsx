@@ -108,7 +108,9 @@ const ProductDetailsView: React.FC<{ product: IProduct }> = ({ product }) => {
       dispatch(addProduct({product, quantity: 1 }));
       dispatch(toggleItemAdded(true));
     };
-  const { _id, image, title, categoryId, description, price} = product;
+  const { _id, image, title, categoryId, description, price,imageDetail} = product;
+  console.log(imageDetail);
+  
   return (
     <Container maxWidth="lg" sx={{ mb: 2, }}>
     <Grid container spacing={2} columns={16} marginBottom={3}>
@@ -126,7 +128,7 @@ const ProductDetailsView: React.FC<{ product: IProduct }> = ({ product }) => {
               backgroundColor: "#fff",
             }}
           >
-            <ProductImagesSlider images={Value} />
+            <ProductImagesSlider images={imageDetail} />
           </div>
         </div>
       </Grid>

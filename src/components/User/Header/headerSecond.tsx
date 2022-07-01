@@ -57,7 +57,7 @@ const HeaderBot: FC = () => {
               onClose={handleClose}
               MenuListProps={{ onMouseLeave: handleClose }}
             >
-              {filteredCategories.map((cate,index) => {
+              {filteredCategories.map((cate) => {
                 return (
               <MenuItem  key= {cate._id} onClick={handleClose} sx = {{ padding: 0 ,marginTop: 1}}>
                   <CategoryItem category={cate} />
@@ -66,23 +66,6 @@ const HeaderBot: FC = () => {
               })}
              
             </Menu>
-            {/* <div className="dropdown">
-            <div
-            className="dropbtn"
-              style={{
-                display: "flex",
-                width: "auto",
-              }}
-            >
-              <MenuIcon />
-              <span>Danh mục sản phẩm</span>
-            </div>
-              <div className="dropdown-content">
-              <MenuItem>Profile</MenuItem>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-              </div>
-            </div> */}
           </Box>
           <Box className="headerSecond_custom-item">
             <Button

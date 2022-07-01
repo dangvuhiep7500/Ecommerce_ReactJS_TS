@@ -9,6 +9,7 @@ interface IState {
   title: string;
   categoryId: string;
   description: string;
+  imageDetail: [string];
   price: number;
 }
  interface ICategory {
