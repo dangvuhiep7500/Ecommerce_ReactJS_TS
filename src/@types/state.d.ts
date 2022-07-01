@@ -7,7 +7,7 @@ interface IState {
   _id: string;
   image: string;
   title: string;
-  category: string;
+  categoryId: string;
   description: string;
   price: number;
 }

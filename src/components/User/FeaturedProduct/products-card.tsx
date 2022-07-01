@@ -38,14 +38,15 @@ const Product: FC<Props> = ({
 
   return (
     <Card sx={{  margin: 0.95 }} className="CardProduct">
-      <Link onClick={navigateToProduct} underline="none" color="black">
+      <Link onClick={navigateToProduct} underline="none" color="black" >
         <CardMedia
         className="CardProduct_img"
           component="img"
           image={product.image}
           alt={product.image}
+          
         />
-        <Typography  className="CardProduct_title" style={{ fontWeight: "bold",}}>
+        <Typography  className="CardProduct_title" style={{ fontWeight: "bold",  }}>
           {product.title}
         </Typography>
       </Link>

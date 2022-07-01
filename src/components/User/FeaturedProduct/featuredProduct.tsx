@@ -1,8 +1,15 @@
 import { Container } from "@mui/material";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Slider from "react-slick";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { filterByCategory } from "../../../store/products/products.slice";
+import Category from "../Category/category";
 import FeaturedTittle from "./featuredTittle";
 import Product from "./products-card";
+interface prop {
+  category: ICategory;
+}
 const FeaturedProduct: FC = () => {
   var settings = {
     infinite: true,
@@ -39,56 +46,34 @@ const FeaturedProduct: FC = () => {
       },
     ],
   };
-  const Value = [
-    {
-      _id: "1",
-      img: "https://product.hstatic.net/1000284798/product/i5_12100f__8g_500w_gtx1050ti_72a7d791f0ab412fb9fdb9e7b0a50deb_large.png",
-      des: "Cấu hình i3 12100F/ H610M / 8G RAM/ SSD 120G/ 500W/ GTX1050ti",
-      price: 12500000,
-    },
-    {
-      _id: "2",
-      img: "https://product.hstatic.net/1000284798/product/i5_12100f__8g_500w_gt_1030_4g_c80ffb4cb641406f833c6e0537897d47_large.png",
-      des: "Cấu hình i3 12100F/ H610M / 8G RAM/ SSD 120G/ 500W/ GT1030 4G",
-      price: 10500000,
-    },
-    {
-      _id: "3",
-      img: "https://product.hstatic.net/1000284798/product/i5_12100f__8g_650w_rtx_3050_cad24f6b38944d749f539edb7cdbe7c2_large.png",
-      des: "Cấu hình i3 12100F/ H610M / 16G RAM/ SSD 240G/ 650W/ RTX3050",
-      price: 18300000,
-    },
-    {
-      _id: "4",
-      img: "https://product.hstatic.net/1000284798/product/i5_12100f__8g_650w_rtx_2060_583c9968dcbc4367a142cd320f90a820_large.png",
-      des: "Cấu hình i3 12100F/ H610M / 16G RAM/ SSD 240G/ 650W/ RTX2060",
-      price: 18250000,
-    },
-    {
-      _id: "5",
-      img: "https://product.hstatic.net/1000284798/product/i5_12100f__8g_500w_gtx1660_7509fa818f21438b9d5bcafe9e1be0c5_large.png",
-      des: "Cấu hình i3 12100F/ H610M / 16G RAM/ SSD 120G/ 500W/ GTX1660",
-      price: 17000000,
-    },
-    {
-      _id: "6",
-      img: "https://product.hstatic.net/1000284798/product/i5_12100f__8g_500w_gtx1660_7509fa818f21438b9d5bcafe9e1be0c5_large.png",
-      des: "Cấu hình i3 12100F/ H610M / 16G RAM/ SSD 120G/ 500W/ GTX1660",
-      price: 17000000,
-    },
-  ];
+
+  const { filteredProducts } = useAppSelector((state) => state.productsReducer);
+
+  const { filteredCategories } = useAppSelector(
+    (state) => state.categoriesReducer
+  );
+    console.log(filteredCategories.filter((id) => id._id === "62b32e9af81144a535e03211"));
+
+    const test = filteredCategories.find((id) => id._id === "62b32e9af81144a535e03211");
+    console.log(test);
+    
+
   return (
     <Container maxWidth="lg" sx={{ mb: 2 }}>
-      <FeaturedTittle title="PC DV - MIỄN PHÍ GIAO HÀNG TOÀN QUỐC" />
+      {/* <FeaturedTittle title="PC DV - MIỄN PHÍ GIAO HÀNG TOÀN QUỐC" /> */}
       <Slider {...settings}>
         {/* {Value.map((item) => {
           return (
             <Product key={item._id} id={item._id} img={item.img} title={item.des} price={item.price} />
           );
         })} */}
-       
-       {/* <ProductListingView products={Value} /> */}
-        
+        {/* {filteredProducts.map((product) => {
+          return categoryId === product.categoryId ? (
+            <Product key={product._id} product={product} />
+          ) : null;
+        })} */}
+
+
       </Slider>
     </Container>
   );

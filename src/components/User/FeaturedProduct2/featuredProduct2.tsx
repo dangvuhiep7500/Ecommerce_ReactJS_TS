@@ -10,7 +10,6 @@ const FeaturedProduct2: FC = () => {
   const { isLoading, filteredProducts } = useAppSelector(
     (state) => state.productsReducer
   );
-  console.log(filteredProducts)
   const [page, setPage] = useState(1);
   const PER_PAGE = 10;
   // // const [product, setProduct] = useState<PropProduct[]>([]);
@@ -45,24 +44,25 @@ const FeaturedProduct2: FC = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mb: 2 }}>
-      <FeaturedTittle title="LAPTOP GAMING BÁN CHẠY" />
+      <FeaturedTittle title="Tất cả sản phẩm" />
       <Box sx={{ mb: 4 }}>
         <Grid container>
           {_DATA.currentData().map((product: IProduct) => (
             <Product key={product._id} product={product} />
           ))}
-          {/* <ProductListingView products={currentPosts} /> */}
         </Grid>
       </Box>
 
-      <Pagination
-        style={{ display: "flex", justifyContent: "center" }}
-        onChange={handleChange}
-        count={pageCount}
-        variant="outlined"
-        shape="rounded"
-        page={page}
-      />
+      {pageCount > 1 && (
+        <Pagination
+          style={{ display: "flex", justifyContent: "center" }}
+          onChange={handleChange}
+          count={pageCount}
+          variant="outlined"
+          shape="rounded"
+          page={page}
+        />
+      )}
     </Container>
   );
 };

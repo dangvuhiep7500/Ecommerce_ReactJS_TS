@@ -19,8 +19,6 @@ const CategoryDetail: FC = () => {
   const { isLoading, filteredProducts } = useAppSelector(
     (state) => state.productsReducer
   );
-  const [items, setItems] = useState<any>([])
-  console.log(setItems);
   const [page, setPage] = useState(1);
   const PER_PAGE = 25;
   const pageCount = Math.ceil(filteredProducts.length / PER_PAGE);
@@ -31,21 +29,24 @@ const CategoryDetail: FC = () => {
   };
   const { categoryId } = useParams();
   const { categories } = useAppSelector((state) => state.categoriesReducer);
-  const cate = categories.filter(
-    (cate) => cate._id === String(categoryId)
-  )[0];
-  console.log(cate);
-  if (cate) {
+  const cate = categories.filter((cate) => cate._id === String(categoryId))[0];
 
+  if (cate) {
     return (
-        <Container maxWidth="lg">
-          <Typography variant="h4">{cate.categoryName}</Typography>
-          <Box sx={{ mb: 4 }}>
-            <Grid container>
-              {_DATA.currentData().map((product: IProduct) => (
+      <Container maxWidth="lg">
+        <Typography variant="h4">{cate.categoryName}</Typography>
+        <Box sx={{ mb: 4 }}>
+          <Grid container>
+            {/* {_DATA.currentData().map((product: IProduct) => (
                 <Product key={product._id} product={product} />
-              ))}
-            </Grid>
+              ))} */}
+            {_DATA.currentData().map((product: IProduct) => {
+              return cate._id === product.categoryId ? (
+                <Product key={product._id} product={product} />
+              ) : null;
+            })}
+          </Grid>
+          {pageCount > 1 && (
             <Pagination
               style={{ display: "flex", justifyContent: "center" }}
               onChange={handleChange}
@@ -54,12 +55,13 @@ const CategoryDetail: FC = () => {
               shape="rounded"
               page={page}
             />
-          </Box>
-        </Container>
-      );
-   } else { 
+          )}
+        </Box>
+      </Container>
+    );
+  } else {
     return (
-        <Container maxWidth="lg">
+      <Container maxWidth="lg">
         <div className={"product"}>
           <div className={"productWrapper"}>
             <Skeleton variant="rectangular" width={500} height={500} />
@@ -77,9 +79,8 @@ const CategoryDetail: FC = () => {
             </div>
           </div>
         </div>
-        </Container>
-      );
-    };
-
+      </Container>
+    );
+  }
 };
 export default CategoryDetail;

@@ -108,7 +108,7 @@ const ProductDetailsView: React.FC<{ product: IProduct }> = ({ product }) => {
       dispatch(addProduct({product, quantity: 1 }));
       dispatch(toggleItemAdded(true));
     };
-  const { _id, image, title, category, description, price} = product;
+  const { _id, image, title, categoryId, description, price} = product;
   return (
     <Container maxWidth="lg" sx={{ mb: 2, }}>
     <Grid container spacing={2} columns={16} marginBottom={3}>

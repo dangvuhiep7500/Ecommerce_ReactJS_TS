@@ -7,6 +7,9 @@
     }
     &_title {
         cursor: pointer;
-        padding: 5px;
+        padding: 3px;
+        line-height: 1.5em;
+        height: 3em;
+        overflow: hidden;
     }
 }

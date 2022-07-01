@@ -43,10 +43,10 @@ export const productsSlice = createSlice({
             )
          })
       },
-      filterByCategory(state, action: PayloadAction<string>) {
-         if (action.payload !== 'All') {
+      filterByCategory(state, action: PayloadAction<String>) {
+         if (action.payload !== '') {
             state.filteredProducts = state.products.filter(
-               (product) => product.category === action.payload
+               (product) => product.categoryId === action.payload
             )
          } else {
             state.filteredProducts = state.products
