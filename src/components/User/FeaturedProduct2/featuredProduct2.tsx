@@ -41,7 +41,8 @@ const FeaturedProduct2: FC = () => {
     setPage(value);
     _DATA.jump(value);
   };
-
+  console.log(filteredProducts);
+  
   return (
     <Container maxWidth="lg" sx={{ mb: 2 }}>
       <FeaturedTittle title="Tất cả sản phẩm" />

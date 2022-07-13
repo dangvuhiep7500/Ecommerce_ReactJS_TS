@@ -6,6 +6,8 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import { useAppSelector } from "../../../hooks";
 import CategoryItem from "../Category/categoryItem";
 import SettingsIcon from '@mui/icons-material/Settings';
+import CategoryItemCopy from "../Category/categoryItem copy";
+
 // const useStyles = makeStyles({
 //   button: {
 //     backgroundColor: '#3c52b2',
@@ -64,7 +66,7 @@ const HeaderBot: FC = () => {
               </MenuItem>
                 );
               })}
-             
+              
             </Menu>
           </Box>
           <Box className="headerSecond_custom-item">

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { filterByCategory } from "../../../store/products/products.slice";
 import Category from "../Category/category";
+import CategoryItemCopy from "../Category/categoryItem copy";
 import FeaturedTittle from "./featuredTittle";
 import Product from "./products-card";
 interface prop {
@@ -52,12 +53,6 @@ const FeaturedProduct: FC = () => {
   const { filteredCategories } = useAppSelector(
     (state) => state.categoriesReducer
   );
-    console.log(filteredCategories.filter((id) => id._id === "62b32e9af81144a535e03211"));
-
-    const test = filteredCategories.find((id) => id._id === "62b32e9af81144a535e03211");
-    console.log(test);
-    
-
   return (
     <Container maxWidth="lg" sx={{ mb: 2 }}>
       {/* <FeaturedTittle title="PC DV - MIỄN PHÍ GIAO HÀNG TOÀN QUỐC" /> */}
@@ -72,7 +67,7 @@ const FeaturedProduct: FC = () => {
             <Product key={product._id} product={product} />
           ) : null;
         })} */}
-
+   
 
       </Slider>
     </Container>

@@ -13,7 +13,11 @@ import axios from "axios";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../hooks";
+import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/index.css";
+import CategoryItemCopy from "./categoryItem copy";
 import CategoryItem from "./categoryItem";
+
 // interface CatProps{
 //   _id: string;
 //   categoryName: string;
@@ -67,6 +71,7 @@ const Category: FC = () => {
   const { isLoading, filteredCategories } = useAppSelector(
     (state) => state.categoriesReducer
   );
+  console.log(filteredCategories);
 
   return (
     <Container maxWidth="lg">
@@ -87,30 +92,63 @@ const Category: FC = () => {
                   </ListItem>
                 );
               })} */}
+
+              {/* {filteredCategories.map((cate) => {
+                return (
+                  <CategoryItem key= {cate._id} category={cate} />
+                  
+                );
+              })}
+
+              <Menu menuButton={<MenuButton>Open menu</MenuButton>}>
+                {filteredCategories.map((cate) => {
+                  return (
+                    <>
+                      <CategoryItemCopy key= {cate._id} category={cate} />
+                    </>
+                  );
+                })}
+              </Menu> */}
               {filteredCategories.map((cate) => {
                 return (
                   <CategoryItem key= {cate._id} category={cate} />
+                  
                 );
               })}
+              <Menu menuButton={<MenuButton>Open menu</MenuButton>}>
+                {filteredCategories.map((cate) => {
+                  return (
+                      <CategoryItemCopy key= {cate._id} category={cate} />
+                  );
+                })}
+              </Menu>
+              {/* {filteredCategories.map((cate) => {
+                  return (
+                      <CategoryItemCopy key= {cate._id} category={cate} />
+                  );
+                })} */}
             </List>
           </Box>
         </Grid>
         <Grid item xs={9.7}>
           <Box>
-          <div className="trending">
-            <Slider {...settings}>
-              {Value.map((item, i) => {
-                return (
-                  <div key={i} className="trending-top">
-                    <Slider {...settings}>
-                      <div>
-                        <img src={`${item.img}`} style={{ width: "inherit" }} />
-                      </div>
-                    </Slider>
-                  </div>
-                );
-              })}
-            </Slider>
+            <div className="trending">
+              <Slider {...settings}>
+                {Value.map((item, i) => {
+                  return (
+                    <div key={i} className="trending-top">
+                      <Slider {...settings}>
+                        <div>
+                          <img
+                            src={`${item.img}`}
+                            style={{ width: "inherit" }}
+                          />
+                        </div>
+                      </Slider>
+                    </div>
+                  );
+                })}
+              </Slider>
             </div>
           </Box>
         </Grid>

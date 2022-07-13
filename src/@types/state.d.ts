@@ -3,7 +3,7 @@ interface IState {
   productReducer: IProductsReducer;
 }
 
- interface IProduct {
+interface IProduct {
   _id: string;
   image: string;
   title: string;
@@ -12,10 +12,20 @@ interface IState {
   imageDetail: [string];
   price: number;
 }
- interface ICategory {
+interface ICategory {
   _id: string;
   categoryName: string;
-  categoryImage: string
+  categoryImage: string;
+  slug: string;
+  children: [
+    {
+      _id: string;
+      categoryName: string;
+      categoryImage: string;
+      parentId: string;
+      slug: string;
+    }
+  ];
 }
 
 // interface IRating {
@@ -27,8 +37,8 @@ interface IState {
 //   products: IProduct[];
 // }
 interface CartItem {
-  product: IProduct
-  quantity: number
+  product: IProduct;
+  quantity: number;
 }
 // type IProducts = IProduct[];
 
