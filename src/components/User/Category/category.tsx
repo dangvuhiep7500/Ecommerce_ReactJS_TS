@@ -1,37 +1,10 @@
 import { useState, useEffect, FC } from "react";
-import {
-  Grid,
-  Container,
-  Box,
-  ListItem,
-  List,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import axios from "axios";
+import { Grid, Container, Box } from "@mui/material";
 import Slider from "react-slick";
-import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../hooks";
-import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
-import "@szhsin/react-menu/dist/index.css";
-import CategoryItemCopy from "./categoryItem copy";
 import CategoryItem from "./categoryItem";
 
-// interface CatProps{
-//   _id: string;
-//   categoryName: string;
-//   categoryImage: string
-// }
 const Category: FC = () => {
-  // const [category, setCategory] = useState<CatProps[]>([]);
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/categories/category").then((res) => {
-  //     setCategory(res.data);
-  //   });
-  // }, []);
-  // console.log(category);
-
   const settings = {
     className: "slider",
     infinite: true,
@@ -76,61 +49,16 @@ const Category: FC = () => {
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2}>
-        <Grid item xs={2.3}>
+        <Grid item xs={2}>
           <Box>
-            <List>
-              {/* {category.map((cat, index) => {
-                return (
-                  <ListItem disablePadding key={index}  className="custom-item">
-                    <ListItemButton>
-                        <img src={cat.categoryImage} alt={cat.categoryImage} style={{width:20, height:18 , paddingRight:5}}/>
-                      <ListItemText
-                        disableTypography
-                        primary={<Typography variant="body2">{cat.categoryName}</Typography>}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                );
-              })} */}
-
-              {/* {filteredCategories.map((cate) => {
-                return (
-                  <CategoryItem key= {cate._id} category={cate} />
-                  
-                );
-              })}
-
-              <Menu menuButton={<MenuButton>Open menu</MenuButton>}>
-                {filteredCategories.map((cate) => {
-                  return (
-                    <>
-                      <CategoryItemCopy key= {cate._id} category={cate} />
-                    </>
-                  );
-                })}
-              </Menu> */}
+            <ul className="menu">
               {filteredCategories.map((cate) => {
-                return (
-                  <CategoryItem key= {cate._id} category={cate} />
-                  
-                );
+                return <CategoryItem key={cate._id} category={cate} />;
               })}
-              <Menu menuButton={<MenuButton>Open menu</MenuButton>}>
-                {filteredCategories.map((cate) => {
-                  return (
-                      <CategoryItemCopy key= {cate._id} category={cate} />
-                  );
-                })}
-              </Menu>
-              {/* {filteredCategories.map((cate) => {
-                  return (
-                      <CategoryItemCopy key= {cate._id} category={cate} />
-                  );
-                })} */}
-            </List>
+            </ul>
           </Box>
         </Grid>
-        <Grid item xs={9.7}>
+        <Grid item xs={10}>
           <Box>
             <div className="trending">
               <Slider {...settings}>

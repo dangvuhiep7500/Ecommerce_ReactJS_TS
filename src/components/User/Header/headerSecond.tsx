@@ -5,69 +5,35 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PaymentIcon from "@mui/icons-material/Payment";
 import { useAppSelector } from "../../../hooks";
 import CategoryItem from "../Category/categoryItem";
-import SettingsIcon from '@mui/icons-material/Settings';
-import CategoryItemCopy from "../Category/categoryItem copy";
+import SettingsIcon from "@mui/icons-material/Settings";
 
-// const useStyles = makeStyles({
-//   button: {
-//     backgroundColor: '#3c52b2',
-//     color: '#fff',
-//     '&:hover': {
-//       backgroundColor: 'red',
-//       color: 'red',
-//   },
-// }})
 const HeaderBot: FC = () => {
-  const [anchorEl, setAnchorEl] = useState<any>(null);
-
-  function handleClick(event: React.ChangeEvent<unknown>) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
   const { isLoading, filteredCategories } = useAppSelector(
     (state) => state.categoriesReducer
   );
-  // const classes = useStyles();
   return (
     <div className="headerSecond">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box className="headerSecond_listcate">
-            <Button
-              className="headerSecond_button-item"
-              color="inherit"
-              startIcon={<MenuIcon />}
-              size="small"
-              aria-owns={anchorEl ? "simple-menu" : undefined}
-              aria-haspopup="true"
-              onClick={handleClick}
-              onMouseOver={handleClick}
-            >
-              Danh mục sản phẩm
-            </Button>
-            <Menu
-              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              transformOrigin={{ vertical: "top", horizontal: "left" }}
-              id="simple-menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              MenuListProps={{ onMouseLeave: handleClose }}
-            >
-              {filteredCategories.map((cate) => {
-                return (
-              <MenuItem  key= {cate._id} onClick={handleClose} sx = {{ padding: 0 ,marginTop: 1}}>
-                  <CategoryItem category={cate} />
-              </MenuItem>
-                );
-              })}
-              
-            </Menu>
+            <div className="dropdown">
+              <Button
+                className="dropbtn"
+                color="inherit"
+                startIcon={<MenuIcon />}
+                size="small"
+                aria-haspopup="true"
+              >
+                Danh mục sản phẩm
+              </Button>
+              <div className="dropdown-content">
+                <ul className="menu">
+                  {filteredCategories.map((cate) => {
+                    return <CategoryItem key={cate._id} category={cate} />;
+                  })}
+                </ul>
+              </div>
+            </div>
           </Box>
           <Box className="headerSecond_custom-item">
             <Button

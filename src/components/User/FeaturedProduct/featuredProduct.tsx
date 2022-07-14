@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { filterByCategory } from "../../../store/products/products.slice";
 import Category from "../Category/category";
-import CategoryItemCopy from "../Category/categoryItem copy";
 import FeaturedTittle from "./featuredTittle";
 import Product from "./products-card";
 interface prop {
