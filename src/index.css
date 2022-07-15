@@ -59,7 +59,7 @@ span {
     position: absolute;
     list-style: none;
     top: 0px;
-    left: 12.12rem;
+    left: 11.40rem;
     width: 800px;
     min-height: 100%;
     text-align: left;
@@ -67,7 +67,7 @@ span {
     padding: 0;
     z-index: 99;
     overflow: hidden;
-    background-color: white;
+    background-color: green;
 }
 
 .menu>li:hover .megadrop {

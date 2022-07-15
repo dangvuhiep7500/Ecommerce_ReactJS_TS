@@ -49,7 +49,7 @@ const FeaturedProduct: FC = () => {
 
   const { filteredProducts } = useAppSelector((state) => state.productsReducer);
 
-  const { filteredCategories } = useAppSelector(
+  const { categories } = useAppSelector(
     (state) => state.categoriesReducer
   );
   return (

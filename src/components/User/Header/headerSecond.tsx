@@ -8,7 +8,7 @@ import CategoryItem from "../Category/categoryItem";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 const HeaderBot: FC = () => {
-  const { isLoading, filteredCategories } = useAppSelector(
+  const { isLoading, categories } = useAppSelector(
     (state) => state.categoriesReducer
   );
   return (
@@ -28,7 +28,7 @@ const HeaderBot: FC = () => {
               </Button>
               <div className="dropdown-content">
                 <ul className="menu">
-                  {filteredCategories.map((cate) => {
+                  {categories.map((cate) => {
                     return <CategoryItem key={cate._id} category={cate} />;
                   })}
                 </ul>

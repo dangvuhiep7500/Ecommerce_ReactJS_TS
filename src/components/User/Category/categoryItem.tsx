@@ -1,4 +1,5 @@
 import {
+  Link,
   ListItem,
   ListItemButton,
   ListItemText,
@@ -11,15 +12,14 @@ interface Props {
 }
 const CategoryItem: FC<Props> = ({ category }) => {
   const navigate = useNavigate();
-  const navigateToProduct = () => {
-    navigate(`/categories/${category._id}`);
+  const navigateToCategory = () => {
+    navigate(`/${category.slug}`);
   };
   return (
     <li>
-      <ListItem
-        onClick={navigateToProduct}
+    <ListItem
+        onClick={navigateToCategory}
         disablePadding
-        key={category._id}
         className="custom-item"
       >
         <ListItemButton>
@@ -39,11 +39,13 @@ const CategoryItem: FC<Props> = ({ category }) => {
       <div className="megadrop">
         <div className="col">
           <h3>{category.categoryName}</h3>
-          {category.children.map((submenu, index) => {
+          {category.children.map((submenu) => {
             return (
-              <ul>
+              <ul key={submenu._id}>
                 <li>
-                  <a href="#">{submenu.categoryName}</a>
+                  <Link onClick={() => navigate(`/${submenu.slug}`)}>
+                    {submenu.categoryName}
+                  </Link>
                 </li>
               </ul>
             );

@@ -27,9 +27,14 @@ const CategoryDetail: FC = () => {
     setPage(value);
     _DATA.jump(value);
   };
-  const { categoryId } = useParams();
+  const { slug } = useParams();
   const { categories } = useAppSelector((state) => state.categoriesReducer);
-  const cate = categories.filter((cate) => cate._id === String(categoryId))[0];
+  const cate = categories.filter((cate) => cate.slug === String(slug))[0];
+  const subcate = categories.filter(
+    (cate) => cate.children.filter((sub) => sub.slug === String(slug))[0]
+  );
+
+  console.log(subcate);
 
   if (cate) {
     return (
@@ -37,9 +42,6 @@ const CategoryDetail: FC = () => {
         <Typography variant="h4">{cate.categoryName}</Typography>
         <Box sx={{ mb: 4 }}>
           <Grid container>
-            {/* {_DATA.currentData().map((product: IProduct) => (
-                <Product key={product._id} product={product} />
-              ))} */}
             {_DATA.currentData().map((product: IProduct) => {
               return cate._id === product.categoryId ? (
                 <Product key={product._id} product={product} />
@@ -57,6 +59,37 @@ const CategoryDetail: FC = () => {
             />
           )}
         </Box>
+      </Container>
+    );
+  } else if (subcate) {
+    return (
+      <Container maxWidth="lg">
+        {subcate.map((sub) =>
+          sub.children.map((subcate) => {
+            return subcate.slug === String(slug) ? (
+              <Box key={subcate._id} sx={{ mb: 4 }}>
+              <Typography  variant="h4">{subcate.categoryName}</Typography>
+                <Grid container>
+                  {_DATA.currentData().map((product: IProduct) => {
+                    return subcate._id === product.categoryId ? (
+                      <Product key={product._id} product={product} />
+                    ) : null;
+                  })}
+                </Grid>
+                {pageCount > 1 && (
+                  <Pagination
+                    style={{ display: "flex", justifyContent: "center" }}
+                    onChange={handleChange}
+                    count={pageCount}
+                    variant="outlined"
+                    shape="rounded"
+                    page={page}
+                  />
+                )}
+              </Box>
+            ) : null;
+          })
+        )}
       </Container>
     );
   } else {

@@ -41,10 +41,10 @@ const Category: FC = () => {
       des: "",
     },
   ];
-  const { isLoading, filteredCategories } = useAppSelector(
+  const { isLoading, categories } = useAppSelector(
     (state) => state.categoriesReducer
   );
-  console.log(filteredCategories);
+  console.log(categories);
 
   return (
     <Container maxWidth="lg">
@@ -52,7 +52,7 @@ const Category: FC = () => {
         <Grid item xs={2}>
           <Box>
             <ul className="menu">
-              {filteredCategories.map((cate) => {
+              {categories.map((cate) => {
                 return <CategoryItem key={cate._id} category={cate} />;
               })}
             </ul>

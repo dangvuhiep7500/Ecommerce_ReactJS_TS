@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface CategoriesState {
    categories: ICategory[]
-   filteredCategories: ICategory[]
+   subcategories: ICategory[]
    isLoading: boolean
    error: string
 }
 
 const initialState: CategoriesState = {
    categories: [],
-   filteredCategories: [],
+   subcategories: [],
    isLoading: false,
    error: '',
 }
@@ -24,7 +24,7 @@ export const categoriesSlice = createSlice({
          state.isLoading = false
          state.error = ''
          state.categories = action.payload
-         state.filteredCategories = action.payload
+         
       },
       errorFetching(state, action: PayloadAction<string>) {
          state.isLoading = false
