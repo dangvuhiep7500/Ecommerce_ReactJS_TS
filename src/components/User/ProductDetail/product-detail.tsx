@@ -1,12 +1,11 @@
-import React, { FC, memo, useEffect, useState } from "react";
+import React from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import axios from "axios";
 import './product-detail.css'
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProductDetailsView from "./product-detail-view";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppSelector } from "../../../hooks";
 import { Container, Skeleton, Typography } from "@mui/material";
 
 const ProductDetail: React.FC = () => {

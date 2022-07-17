@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { productImages } from "../../assets";
 
 interface CartState {
   cartItems: CartItem[];
@@ -26,7 +25,12 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    ItemAdded(state, action: PayloadAction<CartItem>) {
+      // state.itemAdded = action.payload;
+      state.itemAdded = true
+    },
     addProduct(state, action: PayloadAction<CartItem>) {
+      state.itemAdded = false
       // state.cartItems.push(action.payload)
       // if (state.isEmpty) state.isEmpty = false
       // state.totalSum +=
@@ -60,6 +64,7 @@ export const cartSlice = createSlice({
       state.totalSum -= action.payload.quantity * action.payload.product.price;
       state.totalQuantity -= action.payload.quantity;
     },
+    
     increaseCount(state, action: PayloadAction<CartItem>) {
       state.cartItems = state.cartItems.map((item) => {
         if (JSON.stringify(item) === JSON.stringify(action.payload)) {
@@ -109,6 +114,7 @@ export const {
   increaseCount,
   decreaseCount,
   clearCart,
+  ItemAdded,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

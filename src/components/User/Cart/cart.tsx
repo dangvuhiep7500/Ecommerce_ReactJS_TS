@@ -8,11 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import React, { FC, useState } from "react";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import CartProduct from "../CartProduct/cart-product";
 import { clearCart, removeProduct } from "../../../store/cart/cart.slice";
+import { useNavigate } from "react-router-dom";
 const Data = [
   "✔ Hỗ trợ trả góp 0%, trả trước 0đ",
   "✔ Hoàn tiền 200% khi phát hiện hàng giả",
@@ -28,6 +27,7 @@ const Cart: FC = () => {
   const { isOpen, cartItems, isEmpty, totalSum, itemRemoved ,totalQuantity} = useAppSelector(
     (state) => state.cartReducer
   );
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const handleRemoveCart = () => {
     dispatch(clearCart())
@@ -38,7 +38,7 @@ const Cart: FC = () => {
         <Grid item xs={8}>
           <Typography variant="h6">THÔNG TIN SẢN PHẨM</Typography>
           {isEmpty ? (
-            <div className={"emptyCart"}>Cart is empty</div>
+            <div className={"emptyCart"}>Bạn đang không có sản phẩm nào trong giỏ hàng.</div>
           ) : (
             cartItems.map((item) => (
               <CartProduct key={item.product._id} product={item} />
@@ -91,7 +91,7 @@ const Cart: FC = () => {
               </Button>
             </Box>
             <Box paddingTop={2}>
-              <Button variant="outlined" color="primary" fullWidth size="large">
+              <Button onClick={() => navigate("/")}variant="outlined" color="primary" fullWidth size="large">
                 Xem sản phẩm khác
               </Button>
             </Box>

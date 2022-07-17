@@ -2,6 +2,10 @@ interface IState {
   selectedProductReducer: ISelectedProductReducer;
   productReducer: IProductsReducer;
 }
+interface User {
+  email: string;
+  password: string;
+}
 
 interface IProduct {
   _id: string;

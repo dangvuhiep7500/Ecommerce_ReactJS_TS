@@ -23,17 +23,16 @@ code {
     width: max-content;
 }
 
-.menu a,
+/* .menu a, */
 .menu a:link,
 .menu a:visited,
 .menu a:focus,
 span {
-    color: #111;
     text-decoration: none;
 }
 
 .menu a:hover {
-    color: #227087;
+    color: #005ec4;
     text-decoration: none;
 }
 
@@ -43,7 +42,7 @@ span {
 }
 
 .menu>li:hover>a {
-    color: #227087;
+    color: #005ec4;
 }
 
 .menu>li:hover {
@@ -67,7 +66,7 @@ span {
     padding: 0;
     z-index: 99;
     overflow: hidden;
-    background-color: green;
+    background-color: white;
 }
 
 .menu>li:hover .megadrop {
@@ -76,20 +75,19 @@ span {
     margin-top: 0px;
 }
 
+.menu .col .submenu:hover,
 .menu ul li:hover:after {
-    color: #227087;
+    color: #005ec4;
 }
 
 .menu .col {
-    width: 14.1%;
-    float: left;
+    width: 100%;
     color: white;
-    margin: 0 0 0 2.2%;
+    margin: 0 0 0 3%;
 }
 
 .menu .col ul {
-    padding: 0;
-    margin: 0;
+    padding: 15px 0 0 0;
 }
 
 .menu .col ul li {
@@ -98,19 +96,21 @@ span {
     font-size: 11px;
 }
 
-.menu .col h3 {
+.menu .col .title {
+    font-size: 22px;
+    cursor: pointer;
+    color: #005ec4;
+}
+.menu .col .submenu {
     font-size: 16px;
-    padding: 10px 0;
-    font-weight: bold;
-    margin: 5px 0 5px 0;
-    color: #227087;
-    background: #eee;
+    cursor: pointer;
+    color: black;
 }
 
 .menu .col ul li a {
     display: block;
     padding: 0 0 15px 0;
-    color: #227087;
+    color: black;
 }
 
 .menu .col ul li a:hover {
@@ -177,3 +177,88 @@ span {
     background-color: gray;
     text-decoration-color: red;
 }
+
+.dot-pulse {
+    position: relative;
+    left: -9999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: red;
+    color: red;
+    box-shadow: 9999px 0 0 -5px red;
+    animation: dotPulse 1.5s infinite linear;
+    animation-delay: .25s;
+  }
+  
+  .dot-pulse::before, .dot-pulse::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: red;
+    color: red;
+  }
+  
+  .dot-pulse::before {
+    box-shadow: 9984px 0 0 -5px red;
+    animation: dotPulseBefore 1.5s infinite linear;
+    animation-delay: 0s;
+  }
+  
+  .dot-pulse::after {
+    box-shadow: 10014px 0 0 -5px red;
+    animation: dotPulseAfter 1.5s infinite linear;
+    animation-delay: .5s;
+  }
+  
+  @keyframes dotPulseBefore {
+    0% {
+      box-shadow: 9984px 0 0 -5px red;
+    }
+    30% {
+      box-shadow: 9984px 0 0 2px red;
+    }
+    60%,
+    100% {
+      box-shadow: 9984px 0 0 -5px red;
+    }
+  }
+  
+  @keyframes dotPulse {
+    0% {
+      box-shadow: 9999px 0 0 -5px red;
+    }
+    30% {
+      box-shadow: 9999px 0 0 2px red;
+    }
+    60%,
+    100% {
+      box-shadow: 9999px 0 0 -5px red;
+    }
+  }
+  
+  @keyframes dotPulseAfter {
+    0% {
+      box-shadow: 10014px 0 0 -5px red;
+    }
+    30% {
+      box-shadow: 10014px 0 0 2px red;
+    }
+    60%,
+    100% {
+      box-shadow: 10014px 0 0 -5px red;
+    }
+  }
+  .stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem 0;
+    margin: 0 -5%;
+    overflow: hidden;
+  }

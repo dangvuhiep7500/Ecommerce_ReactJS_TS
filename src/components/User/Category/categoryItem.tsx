@@ -17,7 +17,7 @@ const CategoryItem: FC<Props> = ({ category }) => {
   };
   return (
     <li>
-    <ListItem
+      <ListItem
         onClick={navigateToCategory}
         disablePadding
         className="custom-item"
@@ -38,15 +38,20 @@ const CategoryItem: FC<Props> = ({ category }) => {
       </ListItem>
       <div className="megadrop">
         <div className="col">
-          <h3>{category.categoryName}</h3>
+          <Link className="title" underline="none" fontWeight="bold">
+            {category.categoryName}
+          </Link>
           {category.children.map((submenu) => {
             return (
-              <ul key={submenu._id}>
-                <li>
-                  <Link onClick={() => navigate(`/${submenu.slug}`)}>
-                    {submenu.categoryName}
-                  </Link>
-                </li>
+              <ul key={submenu._id} >
+                <Link
+                  onClick={() => navigate(`/${submenu.slug}`)}
+                  className="submenu"
+                  underline="none"
+                  fontWeight="bold"
+                >
+                  {submenu.categoryName}
+                </Link>
               </ul>
             );
           })}

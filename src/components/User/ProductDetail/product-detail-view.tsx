@@ -10,15 +10,8 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import ProductImagesSlider from "./swiper-image";
 import { addProduct, toggleItemAdded } from "../../../store/cart/cart.slice";
 import { useAppDispatch } from "../../../hooks";
+import { useNavigate } from "react-router-dom";
 
-const Value = [
-    "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn_73d5b3c3b48a4ba39b82cd72c13d50c7.jpg",
-    "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn-1_014e4d7c374f4e308b4a7f7a599d7afe.jpg",
-    "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn-2_2f68f91e0e5c40888e049cf66a11ee91.jpg",
-    "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn-3_8195879b32534e3fbe9eff9ebc0262b4.jpg",
-    "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn-4_49770abd5fb04059adb7a789f613571e.jpg",
-    "https://product.hstatic.net/1000026716/product/laptop-msi-modern-14-b5m-202vn-5_248c332d44d34832bd7fe53963518dae.jpg",
-  ];
   const Data = [
     "✔ Bảo hành chính hãng 12 tháng. ",
     "✔ Hỗ trợ đổi mới trong 7 ngày. ",
@@ -103,10 +96,14 @@ const ProductDetailsView: React.FC<{ product: IProduct }> = ({ product }) => {
     const handleChange = (event: React.ChangeEvent<unknown>, newValue: any) => {
       setValue(newValue);
     };
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const addToCart = () => {
-      dispatch(addProduct({product, quantity: 1 }));
-      dispatch(toggleItemAdded(true));
+      setTimeout(() =>{
+        dispatch(addProduct({product, quantity: 1 }));
+        dispatch(toggleItemAdded(true));
+        navigate(`/cart`)
+        },500)
     };
   const { _id, image, title, categoryId, description, price,imageDetail} = product;
   console.log(imageDetail);
