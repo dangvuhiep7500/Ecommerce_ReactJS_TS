@@ -7,7 +7,7 @@ import Detail from '../../../pages/Client/detail'
 import Home from '../../../pages/Client/home'
 import LoginPage from '../../../pages/Client/login'
 import RegisterPage from '../../../pages/Client/register'
-import ScrollToTop from '../../ScollToTop/scolltotop'
+import ScrollToTop from '../../SrcollToTop/scolltotop'
 
 const AppRoutes = () => {
    return (
