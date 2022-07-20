@@ -23,7 +23,9 @@ code {
     width: max-content;
 }
 
+
 /* .menu a, */
+
 .menu a:link,
 .menu a:visited,
 .menu a:focus,
@@ -101,6 +103,7 @@ span {
     cursor: pointer;
     color: #005ec4;
 }
+
 .menu .col .submenu {
     font-size: 16px;
     cursor: pointer;
@@ -189,9 +192,10 @@ span {
     box-shadow: 9999px 0 0 -5px red;
     animation: dotPulse 1.5s infinite linear;
     animation-delay: .25s;
-  }
-  
-  .dot-pulse::before, .dot-pulse::after {
+}
+
+.dot-pulse::before,
+.dot-pulse::after {
     content: '';
     display: inline-block;
     position: absolute;
@@ -201,59 +205,60 @@ span {
     border-radius: 5px;
     background-color: red;
     color: red;
-  }
-  
-  .dot-pulse::before {
+}
+
+.dot-pulse::before {
     box-shadow: 9984px 0 0 -5px red;
     animation: dotPulseBefore 1.5s infinite linear;
     animation-delay: 0s;
-  }
-  
-  .dot-pulse::after {
+}
+
+.dot-pulse::after {
     box-shadow: 10014px 0 0 -5px red;
     animation: dotPulseAfter 1.5s infinite linear;
     animation-delay: .5s;
-  }
-  
-  @keyframes dotPulseBefore {
+}
+
+@keyframes dotPulseBefore {
     0% {
-      box-shadow: 9984px 0 0 -5px red;
+        box-shadow: 9984px 0 0 -5px red;
     }
     30% {
-      box-shadow: 9984px 0 0 2px red;
+        box-shadow: 9984px 0 0 2px red;
     }
     60%,
     100% {
-      box-shadow: 9984px 0 0 -5px red;
+        box-shadow: 9984px 0 0 -5px red;
     }
-  }
-  
-  @keyframes dotPulse {
+}
+
+@keyframes dotPulse {
     0% {
-      box-shadow: 9999px 0 0 -5px red;
+        box-shadow: 9999px 0 0 -5px red;
     }
     30% {
-      box-shadow: 9999px 0 0 2px red;
+        box-shadow: 9999px 0 0 2px red;
     }
     60%,
     100% {
-      box-shadow: 9999px 0 0 -5px red;
+        box-shadow: 9999px 0 0 -5px red;
     }
-  }
-  
-  @keyframes dotPulseAfter {
+}
+
+@keyframes dotPulseAfter {
     0% {
-      box-shadow: 10014px 0 0 -5px red;
+        box-shadow: 10014px 0 0 -5px red;
     }
     30% {
-      box-shadow: 10014px 0 0 2px red;
+        box-shadow: 10014px 0 0 2px red;
     }
     60%,
     100% {
-      box-shadow: 10014px 0 0 -5px red;
+        box-shadow: 10014px 0 0 -5px red;
     }
-  }
-  .stage {
+}
+
+.stage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -261,4 +266,10 @@ span {
     padding: 2rem 0;
     margin: 0 -5%;
     overflow: hidden;
-  }
+}
+
+
+/* .text-checkout::before {
+    display: inline;
+    content: "* ";
+} */

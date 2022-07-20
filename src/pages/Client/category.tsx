@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import CategoryDetail from "../../components/User/Category/category-detail";
-import Footer from "../../components/User/Footer/footer";
-import LayoutHeader from "../../components/User/Layout/layout";
+import CategoryDetail from "../../components/Client/Category/category-detail";
+import Footer from "../../components/Client/Footer/footer";
+import LayoutHeader from "../../components/Client/Layout/layout";
 
 const CategoryPage: FC = () => {
     return (

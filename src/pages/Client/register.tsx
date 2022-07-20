@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import Footer from "../../components/User/Footer/footer";
-import LayoutHeader from "../../components/User/Layout/layout";
-import Register from "../../components/User/Account/register";
+import Footer from "../../components/Client/Footer/footer";
+import LayoutHeader from "../../components/Client/Layout/layout";
+import Register from "../../components/Client/Account/register";
 
 const RegisterPage: FC = () => {
     return (

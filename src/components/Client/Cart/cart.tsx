@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import CartProduct from "../CartProduct/cart-product";
 import { clearCart, removeProduct } from "../../../store/cart/cart.slice";
@@ -24,16 +24,21 @@ const formatter = new Intl.NumberFormat("vi-VN", {
   currency: "VND",
 });
 const Cart: FC = () => {
-  const { isOpen, cartItems, isEmpty, totalSum, itemRemoved ,totalQuantity} = useAppSelector(
-    (state) => state.cartReducer
-  );
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const { isOpen, cartItems, isEmpty, totalSum, itemRemoved, totalQuantity } =
+    useAppSelector((state) => state.cartReducer);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const handleRemoveCart = () => {
-    dispatch(clearCart())
- }
+    dispatch(clearCart());
+  };
+  const [btn, setBtn] = useState(false);
+  useEffect(() => {
+    if (totalQuantity <= 0) {
+      setBtn(true);
+    }
+  }, [totalQuantity]);
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ mt: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Typography variant="h6">THÔNG TIN SẢN PHẨM</Typography>
@@ -68,8 +73,7 @@ const Cart: FC = () => {
             >
               <Typography variant="body1">Tổng chi phí</Typography>
               <Typography variant="body1" color={"red"}>
-              {formatter.format(totalSum)}
-          
+                {formatter.format(totalSum)}
               </Typography>
             </Stack>
             <Typography variant="inherit" fontSize={13} align="right">
@@ -81,17 +85,30 @@ const Cart: FC = () => {
                 color="primary"
                 fullWidth
                 size="large"
+                disabled={btn}
               >
                 Xác nhận đơn hàng
               </Button>
             </Box>
             <Box paddingTop={2}>
-              <Button onClick={handleRemoveCart} variant="contained" color="error" fullWidth size="large">
+              <Button
+                onClick={handleRemoveCart}
+                variant="contained"
+                color="error"
+                fullWidth
+                size="large"
+              >
                 Xoá giỏ hàng
               </Button>
             </Box>
             <Box paddingTop={2}>
-              <Button onClick={() => navigate("/")}variant="outlined" color="primary" fullWidth size="large">
+              <Button
+                onClick={() => navigate("/")}
+                variant="outlined"
+                color="primary"
+                fullWidth
+                size="large"
+              >
                 Xem sản phẩm khác
               </Button>
             </Box>

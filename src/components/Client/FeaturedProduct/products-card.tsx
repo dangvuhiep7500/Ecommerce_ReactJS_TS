@@ -50,7 +50,6 @@ const Product: FC<Props> = ({
     navigate(`/cart`)
     },1300)
   };
-  console.log(addToCart);
   const navigateToProduct = () => {
     navigate(`/products/${product._id}`)
  }

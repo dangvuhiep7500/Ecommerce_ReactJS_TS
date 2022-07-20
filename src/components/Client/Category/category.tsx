@@ -44,7 +44,6 @@ const Category: FC = () => {
   const { isLoading, categories } = useAppSelector(
     (state) => state.categoriesReducer
   );
-  console.log(categories);
 
   return (
     <Container maxWidth="lg">

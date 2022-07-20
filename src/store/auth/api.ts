@@ -1,11 +1,15 @@
-export const url = "http://localhost:5000/users";
+import axios, { AxiosInstance } from 'axios';
 
-export const setHeaders = () => {
-  const headers = {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  };
+const instance: AxiosInstance = axios.create({ baseURL: 'http://localhost:5000/users/'});
 
-  return headers;
-};
+instance.interceptors.request.use(config => {
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    config.headers!.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
+export default instance;

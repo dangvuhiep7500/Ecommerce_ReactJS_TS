@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { makeStyles } from "@mui/styles";
 import {
   Box,
   Button,
@@ -19,7 +18,7 @@ import Link from "@mui/material/Link";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { searchFilter } from "../../../store/products/products.slice";
-
+import { logout } from '../../../store/auth/auth.slice'
 const Header: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useAppDispatch();
@@ -29,6 +28,13 @@ const Header: FC = () => {
     setSearchTerm(event.target.value)
     dispatch(searchFilter(event.target.value))
  }
+ const onLogout = async() =>{
+  await dispatch(logout())
+ }
+ const { successLogin} = useAppSelector((state) => state.authReducer)
+ const user = useAppSelector((state) => state.authReducer.user)
+ console.log(user?.user.firstName);
+ 
   return (
     <Container
       className="header"
@@ -44,7 +50,7 @@ const Header: FC = () => {
             alt=""
           />
         </Link>
-        <Box pr={5}>
+        <Box pr={2}>
           <Paper className="header_search" component="form">
             <InputBase  onChange={onChangeSearch} value={searchTerm}  className="header_input_search" placeholder="Tìm kiếm" />
             <IconButton type="submit" aria-label="search">
@@ -74,8 +80,30 @@ const Header: FC = () => {
         <div className="header_typography">
           <Box pr={2}>
             <Stack direction="row" alignItems="center" gap={2} color="black">
+              {successLogin ? <>
+                <PersonIcon fontSize="large" />
+               <Typography variant="body2" gutterBottom component="div">
+               <Link
+                  className="custom-link"
+                  underline="none"
+                  color="black"
+                  fontWeight="bold"
+                >
+                  Xin chào: {user?.user.firstName} {user?.user.lastName} <br />
+                </Link>
+                <Link
+                  className="custom-link"
+                  onClick={onLogout}
+                  underline="none"
+                  color="black"
+                  fontWeight="bold"
+                >
+                  Đăng xuất
+                </Link>
+              </Typography>
+              </> : <>
               <PersonIcon fontSize="large" />
-              <Typography variant="body2" gutterBottom component="div">
+               <Typography variant="body2" gutterBottom component="div">
                 <Link
                   className="custom-link"
                   onClick={() => navigate("/login")}
@@ -95,6 +123,8 @@ const Header: FC = () => {
                   Đăng kí
                 </Link>
               </Typography>
+              </>
+              }
             </Stack>
           </Box>
         </div>

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import Footer from "../../components/User/Footer/footer";
-import LayoutHeader from "../../components/User/Layout/layout";
-import Login from "../../components/User/Account/login";
+import Footer from "../../components/Client/Footer/footer";
+import LayoutHeader from "../../components/Client/Layout/layout";
+import Login from "../../components/Client/Account/login";
 
 const LoginPage: FC = () => {
     return (

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import ProductDetail from "../../components/User/ProductDetail/product-detail";
-import Footer from "../../components/User/Footer/footer";
-import LayoutHeader from "../../components/User/Layout/layout";
+import ProductDetail from "../../components/Client/ProductDetail/product-detail";
+import Footer from "../../components/Client/Footer/footer";
+import LayoutHeader from "../../components/Client/Layout/layout";
 
 const Detail: FC = () => {
     return (

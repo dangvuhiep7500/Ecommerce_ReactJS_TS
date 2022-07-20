@@ -1,56 +1,71 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { url, setHeaders } from "./api";
-interface LoginPayload {
-   username: string;
-   password: string;
- }
- interface AuthState {
-   isLoggedIn: boolean;
-   logging?: boolean;
-   currentUser?: User;
-   token: string | null;
-   error: string
- }
-const initialState: AuthState = {
-   isLoggedIn: false,
-   logging: false,
-   currentUser: undefined,
-   token: localStorage.getItem("token"),
-   error: "",
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { userLogin,userRegister } from './auth.actions';
+
+interface AuthState {
+  user: IUser | null;
+  isLoading: boolean;
+  error: string | null;
+  successLogin: boolean;
+  successRegister: boolean;
 }
-export const authSlice = createSlice({
-   name: 'auth',
+
+const initialState: AuthState = {
+  user: null,
+  isLoading: false,
+  error: null,
+  successLogin: false,
+  successRegister: false,
+}
+
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
-    login(state, action: PayloadAction<LoginPayload>) {
-      state.logging = true;
+    logout: (state) => {
+      state.successLogin = false
+      state.user = null
+      localStorage.removeItem('persist:user') // deletes token from storage
+      return state
     },
-    loginSuccess(state, action: PayloadAction<User>) {
-      state.isLoggedIn = true;
-      state.logging = false;
-      state.currentUser = action.payload;
+    clearState: (state) => {
+      state.successRegister = false;
+      state.isLoading = false;
+      state.successLogin = false;
+      return state;
     },
-    loginFailed(state, action: PayloadAction<string>) {
-      state.logging = false;
-    },
-
-    logout(state) {
-      state.isLoggedIn = false;
-      state.currentUser = undefined;
-    },
-    errorFetching(state, action: PayloadAction<string>) {
-      state.isLoggedIn = false
-      state.error = action.payload
-   },
   },
-})
-
+  extraReducers: (builder) => {
+    //Login
+    builder.addCase(userLogin.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+      state.isLoading = false
+      state.successLogin = true
+      state.user = payload
+    })
+    builder.addCase(userLogin.rejected, (state, { payload }:any) => {
+      state.isLoading = false
+      state.error = payload
+    })
+    // Register
+    builder.addCase(userRegister.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(userRegister.fulfilled, (state, { payload }) => {
+      state.isLoading = false
+      state.successRegister = true
+    })
+    builder.addCase(userRegister.rejected, (state, { payload }:any) => {
+      state.isLoading = false
+      state.error = payload
+    })
+  },
+});
 export const {
-   login,
-   loginSuccess,
-   loginFailed,
-   logout,
-   errorFetching,
-} = authSlice.actions
-
-export default authSlice.reducer
+  logout,
+  clearState,
+} = authSlice.actions;
+export default authSlice.reducer;

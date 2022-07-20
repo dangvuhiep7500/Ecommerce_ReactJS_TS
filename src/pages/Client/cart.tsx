@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import Cart from "../../components/User/Cart/cart";
-import Footer from "../../components/User/Footer/footer";
-import LayoutHeader from "../../components/User/Layout/layout";
+import Cart from "../../components/Client/Cart/cart";
+import Footer from "../../components/Client/Footer/footer";
+import LayoutHeader from "../../components/Client/Layout/layout";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import AlertComponent from "../../components/User/Alert/AlertComponent";
+import AlertComponent from "../../components/Client/Alert/AlertComponent";
 import { toggleItemAdded } from "../../store/cart/cart.slice";
 const Detail: FC = () => {
   const { itemAdded } = useAppSelector((state) => state.cartReducer)

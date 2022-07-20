@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./sass/index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AppRoutes from "./components/User/Routes/AppRoutes";
+import AppRoutes from "./components/Client/Routes/AppRoutes";
 import { useAppDispatch } from "./hooks";
 import { fetchProducts } from "./store/products/products.action";
 import { fetchCategories } from "./store/category/categories.action";

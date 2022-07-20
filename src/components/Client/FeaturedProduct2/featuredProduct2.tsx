@@ -24,7 +24,6 @@ const FeaturedProduct2: FC = () => {
     setPage(value);
     _DATA.jump(value);
   };
-  console.log(isLoading);
   
   return (
     <Container maxWidth="lg" sx={{ mb: 2 }}>
