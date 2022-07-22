@@ -14,8 +14,8 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../hooks";
 import { userLogin } from "../../../store/auth/auth.actions";
 import { ErrorMessage } from "@hookform/error-message";
-import { clearState } from "../../../store/auth/auth.slice";
-import { CircularProgress } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Checkbox, CircularProgress, FormControlLabel } from "@mui/material";
 const Login: FC = () => {
   interface FormInputs {
     email: string;
@@ -54,6 +54,9 @@ const Login: FC = () => {
             alignItems: "center",
           }}
         >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
           <Typography component="h1" variant="h5" fontWeight={"bold"}>
             Đăng nhập
           </Typography>
@@ -111,14 +114,18 @@ const Login: FC = () => {
             as="p"
             style={{ color: "red" }}
           />
-
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            {isLoading && <CircularProgress size={20} color="inherit" />} &nbsp; Đăng Nhập
+            {isLoading && <CircularProgress size={20} color="inherit" />} &nbsp;
+            Đăng Nhập
           </Button>
           <Grid container>
             <Grid item xs>

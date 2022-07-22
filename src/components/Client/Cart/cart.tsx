@@ -86,6 +86,8 @@ const Cart: FC = () => {
                 fullWidth
                 size="large"
                 disabled={btn}
+                href= '/checkout'
+                // onClick={() => navigate('/checkout')}
               >
                 Xác nhận đơn hàng
               </Button>

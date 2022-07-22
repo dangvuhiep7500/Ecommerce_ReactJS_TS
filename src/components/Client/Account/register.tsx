@@ -6,7 +6,7 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { CircularProgress, Container } from "@mui/material";
+import { Avatar, CircularProgress, Container } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { userRegister } from "../../../store/auth/auth.actions";
 import { useAppSelector } from "../../../hooks";
 import { clearState } from "../../../store/auth/auth.slice";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 const Register: FC = () => {
   interface FormInputs {
     firstName: string;
@@ -22,10 +23,12 @@ const Register: FC = () => {
     email: string;
     password: string;
   }
-  const { isLoading, error, successRegister } = useAppSelector((state) => state.authReducer);
+  const { isLoading, error, successRegister } = useAppSelector(
+    (state) => state.authReducer
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const {
     register,
     formState: { errors },
@@ -35,8 +38,8 @@ const Register: FC = () => {
     try {
       await dispatch(userRegister(data));
       // navigate('/login');
-    } catch (e:any) {
-    console.log(e);
+    } catch (e: any) {
+      console.log(e);
     }
   };
   useEffect(() => {
@@ -44,13 +47,12 @@ const Register: FC = () => {
       dispatch(clearState());
     };
   }, []);
-  useEffect( () =>{
-    if(successRegister){
-      navigate('/login')
+  useEffect(() => {
+    if (successRegister) {
+      navigate("/login");
     }
-  },[successRegister])
+  }, [successRegister]);
   return (
-    
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -61,6 +63,9 @@ const Register: FC = () => {
           alignItems: "center",
         }}
       >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
         <Typography component="h1" variant="h5" fontWeight={"bold"}>
           Đăng ký
         </Typography>
@@ -73,8 +78,9 @@ const Register: FC = () => {
               fullWidth
               id="firstName"
               label="First Name"
-              {...register("firstName",{
-                required: "*Vui lòng nhập tên"})}
+              {...register("firstName", {
+                required: "*Vui lòng nhập tên",
+              })}
               autoFocus
             />
             <ErrorMessage
@@ -89,8 +95,9 @@ const Register: FC = () => {
               fullWidth
               id="lastName"
               label="Last Name"
-              {...register("lastName",{
-                required: "*Vui lòng nhập họ"})}
+              {...register("lastName", {
+                required: "*Vui lòng nhập họ",
+              })}
               autoComplete="family-name"
             />
             <ErrorMessage
@@ -153,7 +160,7 @@ const Register: FC = () => {
             />
           </Grid>
         </Grid>
-        
+
         <Button
           type="submit"
           fullWidth
@@ -161,7 +168,8 @@ const Register: FC = () => {
           disabled={isLoading}
           sx={{ mt: 3, mb: 2 }}
         >
-           {isLoading && <CircularProgress size={20} color="inherit" />} &nbsp; Đăng ký
+          {isLoading && <CircularProgress size={20} color="inherit" />} &nbsp;
+          Đăng ký
         </Button>
         <Grid container justifyContent="flex-end">
           <Grid item>

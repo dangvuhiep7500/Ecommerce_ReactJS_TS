@@ -30,6 +30,9 @@ const Header: FC = () => {
  }
  const onLogout = async() =>{
   await dispatch(logout())
+  navigate('/')
+  window.location.reload()
+
  }
  const { successLogin} = useAppSelector((state) => state.authReducer)
  const user = useAppSelector((state) => state.authReducer.user)

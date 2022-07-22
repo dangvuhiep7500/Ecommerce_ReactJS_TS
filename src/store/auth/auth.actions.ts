@@ -15,9 +15,11 @@ export const userLogin = createAsyncThunk(
     'users/login',
     async ({ email, password }:propsLogin, { rejectWithValue }) => {
       try {
+        const token = localStorage.getItem('token');
         const config = {
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
           },
         }
         const { data } = await axios.post(

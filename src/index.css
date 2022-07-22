@@ -268,8 +268,14 @@ span {
     overflow: hidden;
 }
 
-
-/* .text-checkout::before {
+.text-checkout::after {
     display: inline;
-    content: "* ";
-} */
+    content: " *";
+    color: red;
+}
+
+.text-note::before {
+    display: inline;
+    content: " *";
+    color: red;
+}

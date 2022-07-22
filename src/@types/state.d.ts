@@ -17,7 +17,20 @@ interface IProfile {
   roles?: string,
 }
 
-
+interface IOrder {
+  userId: string;
+  products: {
+      productId: string;
+      quantity: number;
+  };
+  custormer: string;
+  email: string;
+  phoneNumber: number;
+  note: string;
+  parentId: string;
+  address: string;
+  status: string;
+}
 interface IProduct {
   _id: string;
   image: string;
@@ -27,6 +40,7 @@ interface IProduct {
   imageDetail: [string];
   price: number;
 }
+
 interface ICategory {
   _id: string;
   categoryName: string;
@@ -43,24 +57,7 @@ interface ICategory {
   ];
 }
 
-// interface IRating {
-//   count: number;
-//   rate: number;
-// }
-
-// interface IProducts {
-//   products: IProduct[];
-// }
 interface CartItem {
   product: IProduct;
   quantity: number;
 }
-// type IProducts = IProduct[];
-
-// interface IProductsReducer {
-//   products: IProducts;
-// }
-
-// interface ISelectedProductReducer {
-//   product: IProduct;
-// }
