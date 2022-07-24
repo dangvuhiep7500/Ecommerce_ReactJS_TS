@@ -5,7 +5,6 @@ interface CartState {
   isOpen: boolean;
   isEmpty: boolean;
   totalSum: number;
-  totalProduct: number;
   totalQuantity: number;
   itemAdded: boolean;
   itemRemoved: boolean;
@@ -15,7 +14,6 @@ const initialState: CartState = {
   isOpen: false,
   isEmpty: true,
   totalSum: 0,
-  totalProduct: 0,
   totalQuantity: 0,
   itemAdded: false,
   itemRemoved: false,
@@ -31,10 +29,6 @@ export const cartSlice = createSlice({
     },
     addProduct(state, action: PayloadAction<CartItem>) {
       state.itemAdded = false
-      // state.cartItems.push(action.payload)
-      // if (state.isEmpty) state.isEmpty = false
-      // state.totalSum +=
-      //    action.payload.quantity * action.payload.product.price
       const existingIndex = state.cartItems.findIndex(
         (item) => item.product._id === action.payload.product._id
       );

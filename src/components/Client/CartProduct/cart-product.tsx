@@ -27,9 +27,6 @@ const CartProduct: FC<CartItemProps> = ({ product }) => {
          dispatch(decreaseCount(product))
       }
    }
-   const { totalProduct, totalSum} = useAppSelector(
-    (state) => state.cartReducer
-  );
   return (
     <Box marginBottom={2} padding={1} sx={{ border: 1, borderColor: "grey.400" }}>
       <Stack

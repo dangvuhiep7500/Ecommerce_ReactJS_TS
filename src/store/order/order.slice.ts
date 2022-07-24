@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { orderProduct } from './order.action';
 
 interface AuthState {
-  order: IOrder | null;
   cart: CartItem | null
   isLoading: boolean;
   error: string | null;
@@ -10,7 +9,6 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  order: null,
   cart: null,
   isLoading: false,
   error: null,
@@ -23,7 +21,6 @@ const authSlice = createSlice({
   reducers: {
   },
   extraReducers: (builder) => {
-    // Register
     builder.addCase(orderProduct.pending, (state) => {
       state.isLoading = true
       state.error = null

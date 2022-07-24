@@ -3,7 +3,6 @@ interface IState {
   productReducer: IProductsReducer;
 }
 interface IUser {
-  // orders: IOrder[];
   user: IProfile;
   token: string;
 }
@@ -17,20 +16,6 @@ interface IProfile {
   roles?: string,
 }
 
-interface IOrder {
-  userId: string;
-  products: {
-      productId: string;
-      quantity: number;
-  };
-  custormer: string;
-  email: string;
-  phoneNumber: number;
-  note: string;
-  parentId: string;
-  address: string;
-  status: string;
-}
 interface IProduct {
   _id: string;
   image: string;
@@ -39,6 +24,7 @@ interface IProduct {
   description: string;
   imageDetail: [string];
   price: number;
+  quantity: number;
 }
 
 interface ICategory {

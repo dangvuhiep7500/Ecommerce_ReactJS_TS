@@ -13,7 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Control } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useAppSelector } from "../../../hooks";
 import { orderProduct } from "../../../store/order/order.action";
@@ -26,9 +26,11 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 interface FormInputs {
   userId: string;
   products: {
-    productId: string;
+    product: IProduct;
     quantity: number;
-  };
+  }[];
+  totalQuantity: number;
+  totalSum: number;
   customer: string;
   email: string;
   phoneNumber: number;
@@ -45,14 +47,22 @@ const CheckOut: FC = () => {
   };
   const cart = useAppSelector((state) => state.cartReducer);
   //order
+  const itemCart = cart.cartItems
+  const totalQuantity = cart.totalQuantity
+  const totalSum = cart.totalSum
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<FormInputs>({
+    defaultValues: { 
+      products: itemCart,
+      totalQuantity: totalQuantity,totalSum: totalSum
+    },
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const submitForm = async (data: any) => {
+  const submitForm = async (data: FormInputs) => {
     try {
       await dispatch(orderProduct(data));
       // navigate("/");
@@ -60,7 +70,6 @@ const CheckOut: FC = () => {
       console.log(e);
     }
   };
-
   return (
     <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
       <Box onSubmit={handleSubmit(submitForm)} component="form">
@@ -96,7 +105,7 @@ const CheckOut: FC = () => {
                   <TextField
                     size="small"
                     autoComplete="given-name"
-                    id="custormer"
+                    id="customer"
                     defaultValue={"dang"}
                     placeholder="Nhập tên khách hàng"
                     style={{ width: 600, backgroundColor: "#e0e0e0" }}
@@ -106,7 +115,7 @@ const CheckOut: FC = () => {
                   />
                   <ErrorMessage
                     errors={errors}
-                    name="custormer"
+                    name="customer"
                     as="p"
                     style={{ color: "red" }}
                   />
@@ -255,7 +264,7 @@ const CheckOut: FC = () => {
                       <TextField
                         size="small"
                         autoComplete="given-name"
-                        id="custormer"
+                        id="customer"
                         placeholder="Nhập tên người nhận"
                         style={{ width: 600, backgroundColor: "#e0e0e0" }}
                         {...register("customer", {
@@ -264,7 +273,7 @@ const CheckOut: FC = () => {
                       />
                       <ErrorMessage
                         errors={errors}
-                        name="custormer"
+                        name="customer"
                         as="p"
                         style={{ color: "red" }}
                       />
@@ -394,15 +403,15 @@ const CheckOut: FC = () => {
                 </Typography>
               </Box>
               <Box paddingTop={3}>
-                {cart.cartItems.map((item) => {
+                {cart.cartItems.map((item, i) => {
                   return (
                     <Box paddingBottom={2}>
-                      <Typography
-                        variant="body1"
-                        sx={{ fontWeight: 600, color: "#005ec4" }}
+                      <span
+                        style={{ fontWeight: 600, color: "#005ec4" }}
+                        // {...register(`products.title`)}
                       >
                         {item.product.title}
-                      </Typography>
+                      </span>
                       <Stack
                         direction="row"
                         sx={{
@@ -414,31 +423,23 @@ const CheckOut: FC = () => {
                         <Box>
                           <Stack>
                             <Typography variant="body1">
-                              Số lượng:
-                              {/* <InputLabel  {...register("note")} sx={{color: "red"}}>{item.quantity}</InputLabel> */}
-                              <span
+                              Số lượng:{" "}
+                              <label
+                                defaultValue={item.quantity}
                                 style={{ color: "blue" }}
-                                >
+                                // {...register(`products.${i}.quantity`)}
+                              >
                                 {item.quantity}
-                              </span>
+                              </label>
                             </Typography>
                             {/* <TextField
                               size="small"
                               autoComplete="given-name"
-                              id="note"
                               defaultValue={item.quantity}
+                              disabled
                               placeholder="Nhập số điện thoại"
-                              style={{ width: 200, backgroundColor: "#e0e0e0" }}
-                              {...register("phoneNumber")}
-                            />
-                            <TextField
-                              size="small"
-                              autoComplete="given-name"
-                              id="note"
-                              defaultValue={item.product.price}
-                              placeholder="Nhập số điện thoại"
-                              style={{ width: 200, backgroundColor: "#e0e0e0" }}
-                              // {...register(`${products.productId}`)}
+                              style={{ width: 100, backgroundColor: "#e0e0e0" }}
+                              {...register(`products`)}
                             /> */}
                           </Stack>
                         </Box>
@@ -447,6 +448,7 @@ const CheckOut: FC = () => {
                             variant="body1"
                             align="right"
                             fontWeight={"bold"}
+                            // {...register(`products.price`)}
                           >
                             {formatter.format(
                               item.product.price * item.quantity

@@ -3,10 +3,12 @@ import axios from "axios"
 interface propsOrder{
     userId: string;
     products: {
-        productId: string;
-        quantity: number;
-    };
-    custormer: string;
+      product: IProduct;
+      quantity: number;
+    }[];
+    totalQuantity: number;
+    totalSum: number;
+    customer: string;
     email: string;
     phoneNumber: number;
     note: string;
@@ -16,7 +18,7 @@ interface propsOrder{
 }
 export const orderProduct = createAsyncThunk(
     'order/checkout',
-    async ({ userId,products,custormer,email, phoneNumber,note,parentId,address,status }:propsOrder, { rejectWithValue }) => {
+    async ({ userId,products,customer,email, phoneNumber,note,parentId,address,status,totalQuantity, totalSum }:propsOrder, { rejectWithValue }) => {
       try {
         const config = {
           headers: {
@@ -25,7 +27,7 @@ export const orderProduct = createAsyncThunk(
         }
         await axios.post(
           'http://localhost:5000/order/create',
-          { userId,products,custormer,email, phoneNumber,note,parentId,address,status },
+          { userId,products,customer,email, phoneNumber,note,parentId,address,status,totalQuantity, totalSum },
           config
         )
       } catch (error:any) {
