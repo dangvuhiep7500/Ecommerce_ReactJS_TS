@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TSortBy } from "./sortBy";
 
 interface ProductsState {
   products: IProduct[];
