@@ -6,19 +6,22 @@ import {
   Container,
   FormControlLabel,
   Grid,
-  Input,
-  InputLabel,
   Stack,
   TextareaAutosize,
   TextField,
   Typography,
 } from "@mui/material";
-import { useForm, useFieldArray, Control } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useAppSelector } from "../../../hooks";
 import { orderProduct } from "../../../store/order/order.action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { clearCart } from "../../../store/cart/cart.slice";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
   currency: "VND",
@@ -29,15 +32,18 @@ interface FormInputs {
     product: IProduct;
     quantity: number;
   }[];
-  totalQuantity: number;
-  totalSum: number;
   customer: string;
   email: string;
   phoneNumber: number;
-  note: string;
-  parentId: string;
   address: string;
+  customerReceiver: string;
+  phoneReceiver: number;
+  addressReceiver: string;
+  totalQuantity: number;
+  totalSum: number;
+  note: string;
   status: string;
+  payment: string;
 }
 const CheckOut: FC = () => {
   const [checked, setChecked] = useState(false);
@@ -47,17 +53,18 @@ const CheckOut: FC = () => {
   };
   const cart = useAppSelector((state) => state.cartReducer);
   //order
-  const itemCart = cart.cartItems
-  const totalQuantity = cart.totalQuantity
-  const totalSum = cart.totalSum
+  const itemCart = cart.cartItems;
+  const totalQuantity = cart.totalQuantity;
+  const totalSum = cart.totalSum;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>({
-    defaultValues: { 
+    defaultValues: {
       products: itemCart,
-      totalQuantity: totalQuantity,totalSum: totalSum
+      totalQuantity: totalQuantity,
+      totalSum: totalSum,
     },
   });
   const dispatch = useDispatch();
@@ -65,7 +72,8 @@ const CheckOut: FC = () => {
   const submitForm = async (data: FormInputs) => {
     try {
       await dispatch(orderProduct(data));
-      // navigate("/");
+      navigate("/");
+      dispatch(clearCart());
     } catch (e: any) {
       console.log(e);
     }
@@ -110,16 +118,16 @@ const CheckOut: FC = () => {
                     placeholder="Nhập tên khách hàng"
                     style={{ width: 600, backgroundColor: "#e0e0e0" }}
                     {...register("customer", {
-                      required: "*Vui lòng tên khách hàng",
+                      required: "*Vui lòng nhập tên khách hàng",
                     })}
                   />
-                  <ErrorMessage
-                    errors={errors}
-                    name="customer"
-                    as="p"
-                    style={{ color: "red" }}
-                  />
                 </Stack>
+                <ErrorMessage
+                  errors={errors}
+                  name="customer"
+                  as="p"
+                  style={{ color: "red" }}
+                />
                 <Stack
                   sx={{ mb: 2, justifyContent: "space-between" }}
                   direction="row"
@@ -147,13 +155,13 @@ const CheckOut: FC = () => {
                       required: "*Vui lòng nhập Email",
                     })}
                   />
-                  <ErrorMessage
-                    errors={errors}
-                    name="email"
-                    as="p"
-                    style={{ color: "red" }}
-                  />
                 </Stack>
+                <ErrorMessage
+                  errors={errors}
+                  name="email"
+                  as="p"
+                  style={{ color: "red" }}
+                />
                 <Stack
                   sx={{ mb: 2, justifyContent: "space-between" }}
                   direction="row"
@@ -178,49 +186,51 @@ const CheckOut: FC = () => {
                     placeholder="Nhập số điện thoại"
                     style={{ width: 600, backgroundColor: "#e0e0e0" }}
                     {...register("phoneNumber", {
-                      required: "*Vui lòng nhập tên",
+                      required: "*Vui lòng nhập số điện thoại",
                     })}
-                  />
-                  <ErrorMessage
-                    errors={errors}
-                    name="phoneNumber"
-                    as="p"
-                    style={{ color: "red" }}
                   />
                 </Stack>
-                <Stack
-                  sx={{ mb: 5, justifyContent: "space-between" }}
-                  direction="row"
-                  alignItems="center"
-                  gap={2}
-                  color="black"
-                >
-                  <Typography
-                    className="text-checkout"
-                    gutterBottom
-                    component="div"
-                    variant="body2"
+                <ErrorMessage
+                  errors={errors}
+                  name="phoneNumber"
+                  as="p"
+                  style={{ color: "red" }}
+                />
+                <Box sx={{ paddingBottom: 3 }}>
+                  <Stack
+                    sx={{ justifyContent: "space-between" }}
+                    direction="row"
+                    alignItems="center"
+                    gap={2}
+                    color="black"
                   >
-                    Địa chỉ thường trú
-                  </Typography>
-                  <TextField
-                    size="small"
-                    autoComplete="given-name"
-                    id="address"
-                    defaultValue={"abczxc"}
-                    placeholder="Nhập địa chỉ"
-                    style={{ width: 600, backgroundColor: "#e0e0e0" }}
-                    {...register("address", {
-                      required: "*Vui lòng nhập địa chỉ",
-                    })}
-                  />
+                    <Typography
+                      className="text-checkout"
+                      gutterBottom
+                      component="div"
+                      variant="body2"
+                    >
+                      Địa chỉ thường trú
+                    </Typography>
+                    <TextField
+                      size="small"
+                      autoComplete="given-name"
+                      id="address"
+                      defaultValue={"abczxc"}
+                      placeholder="Nhập địa chỉ"
+                      style={{ width: 600, backgroundColor: "#e0e0e0" }}
+                      {...register("address", {
+                        required: "*Vui lòng nhập địa chỉ",
+                      })}
+                    />
+                  </Stack>
                   <ErrorMessage
                     errors={errors}
                     name="address"
                     as="p"
                     style={{ color: "red" }}
                   />
-                </Stack>
+                </Box>
               </Grid>
               <Grid item xs={12}>
                 <Typography sx={{ mb: 1 }} variant="h6">
@@ -264,20 +274,21 @@ const CheckOut: FC = () => {
                       <TextField
                         size="small"
                         autoComplete="given-name"
-                        id="customer"
+                        id="customerReceiver"
+                        // defaultValue={"Nguyen van a"}
                         placeholder="Nhập tên người nhận"
                         style={{ width: 600, backgroundColor: "#e0e0e0" }}
-                        {...register("customer", {
+                        {...register("customerReceiver", {
                           required: "*Vui lòng nhập người nhận",
                         })}
                       />
-                      <ErrorMessage
-                        errors={errors}
-                        name="customer"
-                        as="p"
-                        style={{ color: "red" }}
-                      />
                     </Stack>
+                    <ErrorMessage
+                      errors={errors}
+                      name="customerReceiver"
+                      as="p"
+                      style={{ color: "red" }}
+                    />
                     <Stack
                       sx={{ mb: 2, justifyContent: "space-between" }}
                       direction="row"
@@ -296,22 +307,22 @@ const CheckOut: FC = () => {
                       <TextField
                         size="small"
                         autoComplete="given-name"
-                        id="phoneNumber"
+                        id="phoneReceiver"
                         type="number"
-                        defaultValue={"123456798"}
+                        // defaultValue={"123456798"}
                         placeholder="Nhập số điện thoại"
                         style={{ width: 600, backgroundColor: "#e0e0e0" }}
-                        {...register("phoneNumber", {
+                        {...register("phoneReceiver", {
                           required: "*Vui lòng nhập số điện thoại",
                         })}
                       />
-                      <ErrorMessage
-                        errors={errors}
-                        name="phoneNumber"
-                        as="p"
-                        style={{ color: "red" }}
-                      />
                     </Stack>
+                    <ErrorMessage
+                      errors={errors}
+                      name="phoneReceiver"
+                      as="p"
+                      style={{ color: "red" }}
+                    />
                     <Stack
                       sx={{ mb: 2, justifyContent: "space-between" }}
                       direction="row"
@@ -330,20 +341,21 @@ const CheckOut: FC = () => {
                       <TextField
                         size="small"
                         autoComplete="given-name"
-                        id="address"
+                        id="addressReceiver"
+                        // defaultValue={"Bien Hoa - Dong Nai"}
                         placeholder="Nhập địa chỉ giao hàng"
                         style={{ width: 600, backgroundColor: "#e0e0e0" }}
-                        {...register("address", {
+                        {...register("addressReceiver", {
                           required: "*Vui lòng nhập tên",
                         })}
                       />
-                      <ErrorMessage
-                        errors={errors}
-                        name="address"
-                        as="p"
-                        style={{ color: "red" }}
-                      />
                     </Stack>
+                    <ErrorMessage
+                      errors={errors}
+                      name="addressReceiver"
+                      as="p"
+                      style={{ color: "red" }}
+                    />
                   </>
                 )}
 
@@ -365,6 +377,55 @@ const CheckOut: FC = () => {
                     style={{ width: 595, backgroundColor: "#e0e0e0" }}
                   />
                 </Stack>
+                <Typography sx={{ mb: 1 }} fontWeight={600} variant="h6">
+                  PHƯƠNG THỨC THANH TOÁN
+                </Typography>
+                <FormControl>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="Thanh toán tại nơi giao hàng"
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="Thanh toán tại nơi giao hàng"
+                      control={<Radio />}
+                      label={
+                        <Typography fontWeight={500} variant="body1">
+                          Thanh toán tại nơi giao hàng
+                        </Typography>
+                      }
+                      {...register("payment", { required: true })}
+                    />
+                    <FormControlLabel
+                      value="Thanh toán bằng chuyển khoản"
+                      control={<Radio />}
+                      label={
+                        <Typography fontWeight={500} variant="body1">
+                          Thanh toán bằng chuyển khoản
+                        </Typography>
+                      }
+                      {...register("payment", { required: true })}
+                    />
+                  </RadioGroup>
+                </FormControl>
+                <Box marginLeft={4} marginBottom={2}>
+                <Typography fontWeight={500} variant="body1">
+                  Tại ngân hàng Techcombank <br/>
+                </Typography>
+                <Typography  variant="body1">
+                 Số tài khoản: 0123456789987 <br/>
+                 Chủ TK: Nguyễn Văn A.
+                </Typography>
+                </Box>
+                <Box marginLeft={4}>
+                <Typography fontWeight={500} variant="body1">
+                  Tại ngân hàng Techcombank <br/>
+                </Typography>
+                <Typography  variant="body1">
+                 Số tài khoản: 0123456789987 <br/>
+                 Chủ TK: Nguyễn Văn A.
+                </Typography>
+                </Box>
               </Grid>
             </Grid>
           </Grid>
@@ -424,23 +485,13 @@ const CheckOut: FC = () => {
                           <Stack>
                             <Typography variant="body1">
                               Số lượng:{" "}
-                              <label
+                              <span
                                 defaultValue={item.quantity}
                                 style={{ color: "blue" }}
-                                // {...register(`products.${i}.quantity`)}
                               >
                                 {item.quantity}
-                              </label>
+                              </span>
                             </Typography>
-                            {/* <TextField
-                              size="small"
-                              autoComplete="given-name"
-                              defaultValue={item.quantity}
-                              disabled
-                              placeholder="Nhập số điện thoại"
-                              style={{ width: 100, backgroundColor: "#e0e0e0" }}
-                              {...register(`products`)}
-                            /> */}
                           </Stack>
                         </Box>
                         <Box>
@@ -448,7 +499,6 @@ const CheckOut: FC = () => {
                             variant="body1"
                             align="right"
                             fontWeight={"bold"}
-                            // {...register(`products.price`)}
                           >
                             {formatter.format(
                               item.product.price * item.quantity

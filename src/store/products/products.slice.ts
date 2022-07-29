@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TSortBy } from "./sortBy";
 
 interface ProductsState {
   products: IProduct[];
   filteredProducts: IProduct[];
   isLoading: boolean;
   error: string;
+  sort: string,
 }
 
 const initialState: ProductsState = {
@@ -12,6 +14,7 @@ const initialState: ProductsState = {
   filteredProducts: [],
   isLoading: false,
   error: "",
+  sort: '',
 };
 export const productsSlice = createSlice({
   name: "products",
@@ -35,14 +38,14 @@ export const productsSlice = createSlice({
         product.title.toLowerCase().includes(action.payload)
       );
     },
-    filterByPrice(state, action: PayloadAction<number[]>) {
-      state.filteredProducts = state.products.filter((product) => {
-        return (
-          product.price > action.payload[0] &&
-          product.price <= action.payload[1]
-        );
-      });
-    },
+    // filterByPrice(state, action: PayloadAction<number[]>) {
+    //   state.filteredProducts = state.products.filter((product) => {
+    //     return (
+    //       product.price > action.payload[0] &&
+    //       product.price <= action.payload[1]
+    //     );
+    //   });
+    // },
     filterByCategory(state, action: PayloadAction<String>) {
       if (action.payload !== "") {
         state.filteredProducts = state.products.filter(
@@ -54,13 +57,12 @@ export const productsSlice = createSlice({
     },
   },
 });
-
+export const allState = (state:any) => state.productsSlice;
 export const {
   startFetching,
   successFetching,
   errorFetching,
   searchFilter,
-  filterByPrice,
   filterByCategory,
 } = productsSlice.actions;
 

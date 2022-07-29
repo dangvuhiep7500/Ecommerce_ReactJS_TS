@@ -1,17 +1,22 @@
 import {
   Box,
   Container,
+  Drawer,
+  FormControl,
   Grid,
+  MenuItem,
   Pagination,
+  Select,
+  SelectChangeEvent,
   Skeleton,
+  Stack,
   Typography,
 } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
+import {  useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import Product from "../FeaturedProduct/products-card";
 import usePagination from "../FeaturedProduct2/Pagination";
-
 const CategoryDetail: FC = () => {
   const { isLoading, filteredProducts } = useAppSelector(
     (state) => state.productsReducer
@@ -30,9 +35,12 @@ const CategoryDetail: FC = () => {
   const subcate = categories.filter(
     (cate) => cate.children.filter((sub) => sub.slug === String(slug))[0]
   );
-
-  console.log(subcate);
-
+  const [value, setValue] = React.useState("")
+  const dispatch = useAppDispatch()
+  const handleChangeSort = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
+  };
+  console.log(cate);
   if (cate) {
     return (
       <Container maxWidth="lg">
@@ -65,7 +73,34 @@ const CategoryDetail: FC = () => {
           sub.children.map((subcate) => {
             return subcate.slug === String(slug) ? (
               <Box key={subcate._id} sx={{ mb: 4 }}>
-              <Typography  variant="h4">{subcate.categoryName}</Typography>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  sx={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <Box>
+                    <Typography variant="h4">{subcate.categoryName}</Typography>
+                  </Box>
+                  <Stack direction="row" alignItems="center">
+                    <Typography fontWeight={600} variant="body1">Sắp xếp theo:</Typography>
+                    <FormControl sx={{ m: 1, minWidth: 200, backgroundColor:"#e0e0e0" }} size="small">
+                      <Select
+                        value={value}
+                        onChange={handleChangeSort}
+                        displayEmpty
+                        inputProps={{ "aria-label": "Without label" }}
+                      >
+                        <MenuItem value="">
+                          <span>Mới nhất</span>
+                        </MenuItem>
+                        <MenuItem value={"Giá (Thấp - Cao)"}>Giá (Thấp - Cao)</MenuItem>
+                        <MenuItem value={"Giá (Cao - Thấp)"}>Giá (Cao - Thấp)</MenuItem>
+                        <MenuItem value={"Tên (A - Z)"}>Tên (A - Z)</MenuItem>
+                        <MenuItem value={"Tên (Z - A)"}>Tên (Z - A)</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Stack>
+                </Stack>
                 <Grid container>
                   {_DATA.currentData().map((product: IProduct) => {
                     return subcate._id === product.categoryId ? (

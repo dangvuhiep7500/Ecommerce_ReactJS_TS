@@ -6,19 +6,23 @@ interface propsOrder{
       product: IProduct;
       quantity: number;
     }[];
-    totalQuantity: number;
-    totalSum: number;
     customer: string;
     email: string;
     phoneNumber: number;
-    note: string;
-    parentId: string;
     address: string;
+    customerReceiver: string;
+    phoneReceiver: number;
+    addressReceiver: string;
+    totalQuantity: number;
+    totalSum: number;
+    note: string;
     status: string;
+    payment: string;
+
 }
 export const orderProduct = createAsyncThunk(
     'order/checkout',
-    async ({ userId,products,customer,email, phoneNumber,note,parentId,address,status,totalQuantity, totalSum }:propsOrder, { rejectWithValue }) => {
+    async ({ userId,products,customer,email, phoneNumber,note,address,status,totalQuantity, totalSum,customerReceiver, phoneReceiver, addressReceiver,payment }:propsOrder, { rejectWithValue }) => {
       try {
         const config = {
           headers: {
@@ -27,7 +31,7 @@ export const orderProduct = createAsyncThunk(
         }
         await axios.post(
           'http://localhost:5000/order/create',
-          { userId,products,customer,email, phoneNumber,note,parentId,address,status,totalQuantity, totalSum },
+          { userId,products,customer,email, phoneNumber,note,address,status,totalQuantity, totalSum,customerReceiver, phoneReceiver, addressReceiver,payment },
           config
         )
       } catch (error:any) {
