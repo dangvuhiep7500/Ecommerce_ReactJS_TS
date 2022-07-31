@@ -6,6 +6,10 @@ interface ProductsState {
   isLoading: boolean;
   error: string;
   sort: string,
+  filterValues: {
+    sort: '',
+    price: 0,
+  },
 }
 
 const initialState: ProductsState = {
@@ -14,6 +18,10 @@ const initialState: ProductsState = {
   isLoading: false,
   error: "",
   sort: '',
+  filterValues: {
+    sort: '',
+    price: 0,
+  },
 };
 export const productsSlice = createSlice({
   name: "products",
@@ -45,6 +53,31 @@ export const productsSlice = createSlice({
     //     );
     //   });
     // },
+    setFilterValues: (state, action) => {
+      switch (action.payload.type) {
+        case 'sort':
+          state.filterValues.sort = action.payload.val;
+          break;
+        case 'price':
+          state.filterValues.price = action.payload.val;
+          break;
+      }
+    },
+    handleFilterBySort(state, action) {
+      state.filteredProducts = state.products.sort((a,b) =>{
+        if (state.filterValues.sort.toString() ==='Giá (Thấp - Cao)') {
+          if (a.price > b.price) return 1;
+          return -1;
+        } else if (state.filterValues.sort.toString() === 'Giá (Cao - Thấp)') {
+          if (a.price < b.price) return 1;
+          return -1;
+        } else {
+          if (a._id > b._id) return 1;
+          return -1;
+        }
+      })
+
+    },
     filterByCategory(state, action: PayloadAction<String>) {
       if (action.payload !== "") {
         state.filteredProducts = state.products.filter(
@@ -56,13 +89,14 @@ export const productsSlice = createSlice({
     },
   },
 });
-export const allState = (state:any) => state.productsSlice;
 export const {
   startFetching,
   successFetching,
   errorFetching,
   searchFilter,
   filterByCategory,
+  setFilterValues,
+  handleFilterBySort,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

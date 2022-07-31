@@ -6,19 +6,22 @@ import {
   Grid,
   MenuItem,
   Pagination,
-  Select,
+  // Select,
   SelectChangeEvent,
   Skeleton,
   Stack,
   Typography,
 } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
+import {  handleFilterBySort, setFilterValues } from "../../../store/products/products.slice";
 import Product from "../FeaturedProduct/products-card";
 import usePagination from "../FeaturedProduct2/Pagination";
+import { useSelector } from 'react-redux';
+import Select from 'react-select';
 const CategoryDetail: FC = () => {
-  const { isLoading, filteredProducts } = useAppSelector(
+  const { isLoading, filteredProducts,filterValues } = useAppSelector(
     (state) => state.productsReducer
   );
   const [page, setPage] = useState(1);
@@ -35,12 +38,39 @@ const CategoryDetail: FC = () => {
   const subcate = categories.filter(
     (cate) => cate.children.filter((sub) => sub.slug === String(slug))[0]
   );
-  const [value, setValue] = React.useState("")
-  const dispatch = useAppDispatch()
+  // sort
+  // const [value, setValue] = useState(sortBy || 'Name: A-Z');
+  const [value, setValue] = React.useState("");
   const handleChangeSort = (event: SelectChangeEvent) => {
     setValue(event.target.value as string);
+    dispatch(handleFilterBySort({}))
   };
-  console.log(cate);
+  const dispatch = useAppDispatch();
+  // const handleChangeSort = (event: SelectChangeEvent) => {
+  //     setSortBy(value);
+  //     setValue(value);
+  //   }
+  //   useEffect(() => {
+  //     initCatalog();
+  //   }, []);
+  // console.log(cate);
+  const sort = [
+    { value: "Mới nhất", label: "Mới nhất" },
+    { value: "Giá (Thấp - Cao)", label: "Giá (Thấp - Cao)" },
+    { value: "Giá (Cao - Thấp)", label: "Giá (Cao - Thấp)" },
+  ];
+ 
+  useEffect(() => {
+    filterValues.sort && dispatch(handleFilterBySort({}));
+  }, [
+    filterValues.sort,
+  ]);
+  console.log(filterValues.sort);
+  
+  const defaultValueSort = (optionSort: any, sortVal: any) => {
+    const result = optionSort.find((option: any) => option.value === sortVal);
+    return result;
+  };
   if (cate) {
     return (
       <Container maxWidth="lg">
@@ -82,22 +112,39 @@ const CategoryDetail: FC = () => {
                     <Typography variant="h4">{subcate.categoryName}</Typography>
                   </Box>
                   <Stack direction="row" alignItems="center">
-                    <Typography fontWeight={600} variant="body1">Sắp xếp theo:</Typography>
-                    <FormControl sx={{ m: 1, minWidth: 200, backgroundColor:"#e0e0e0" }} size="small">
+                    <Typography fontWeight={600} variant="body1">
+                      Sắp xếp theo:
+                    </Typography>
+                    <FormControl
+                      sx={{ m: 1, minWidth: 200, backgroundColor: "#e0e0e0" }}
+                      size="small"
+                    >
                       <Select
-                        value={value}
-                        onChange={handleChangeSort}
-                        displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
-                      >
-                        <MenuItem value="">
+                        // value={value}
+                        // onChange={handleChangeSort}
+                        options={sort}
+                        value={defaultValueSort(sort, filterValues.sort)}
+                        onChange={(e:any) =>
+                          dispatch(
+                            setFilterValues({ type: "sort", val: e.value })
+                          )
+                        }
+                        placeholder="Mới nhất"
+                        // displayEmpty
+                        // inputProps={{ "aria-label": "Without label" }}
+                      />
+                        {/* <MenuItem value="">
                           <span>Mới nhất</span>
                         </MenuItem>
-                        <MenuItem value={"Giá (Thấp - Cao)"}>Giá (Thấp - Cao)</MenuItem>
-                        <MenuItem value={"Giá (Cao - Thấp)"}>Giá (Cao - Thấp)</MenuItem>
+                        <MenuItem value={"Giá (Thấp - Cao)"}>
+                          Giá (Thấp - Cao)
+                        </MenuItem>
+                        <MenuItem value={"Giá (Cao - Thấp)"}>
+                          Giá (Cao - Thấp)
+                        </MenuItem>
                         <MenuItem value={"Tên (A - Z)"}>Tên (A - Z)</MenuItem>
-                        <MenuItem value={"Tên (Z - A)"}>Tên (Z - A)</MenuItem>
-                      </Select>
+                        <MenuItem value={"Tên (Z - A)"}>Tên (Z - A)</MenuItem> */}
+                      {/* </Select> */}
                     </FormControl>
                   </Stack>
                 </Stack>
