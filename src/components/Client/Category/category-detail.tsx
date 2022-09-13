@@ -39,25 +39,13 @@ const CategoryDetail: FC = () => {
     (cate) => cate.children.filter((sub) => sub.slug === String(slug))[0]
   );
   // sort
-  // const [value, setValue] = useState(sortBy || 'Name: A-Z');
-  const [value, setValue] = React.useState("");
-  const handleChangeSort = (event: SelectChangeEvent) => {
-    setValue(event.target.value as string);
-    dispatch(handleFilterBySort({}))
-  };
   const dispatch = useAppDispatch();
-  // const handleChangeSort = (event: SelectChangeEvent) => {
-  //     setSortBy(value);
-  //     setValue(value);
-  //   }
-  //   useEffect(() => {
-  //     initCatalog();
-  //   }, []);
-  // console.log(cate);
   const sort = [
     { value: "Mới nhất", label: "Mới nhất" },
     { value: "Giá (Thấp - Cao)", label: "Giá (Thấp - Cao)" },
     { value: "Giá (Cao - Thấp)", label: "Giá (Cao - Thấp)" },
+    { value: "Tên (A - Z)", label: "Tên (A - Z)" },
+    { value: "Tên (Z - A)", label: "Tên (Z - A)" },
   ];
  
   useEffect(() => {
@@ -120,8 +108,6 @@ const CategoryDetail: FC = () => {
                       size="small"
                     >
                       <Select
-                        // value={value}
-                        // onChange={handleChangeSort}
                         options={sort}
                         value={defaultValueSort(sort, filterValues.sort)}
                         onChange={(e:any) =>
@@ -130,21 +116,7 @@ const CategoryDetail: FC = () => {
                           )
                         }
                         placeholder="Mới nhất"
-                        // displayEmpty
-                        // inputProps={{ "aria-label": "Without label" }}
                       />
-                        {/* <MenuItem value="">
-                          <span>Mới nhất</span>
-                        </MenuItem>
-                        <MenuItem value={"Giá (Thấp - Cao)"}>
-                          Giá (Thấp - Cao)
-                        </MenuItem>
-                        <MenuItem value={"Giá (Cao - Thấp)"}>
-                          Giá (Cao - Thấp)
-                        </MenuItem>
-                        <MenuItem value={"Tên (A - Z)"}>Tên (A - Z)</MenuItem>
-                        <MenuItem value={"Tên (Z - A)"}>Tên (Z - A)</MenuItem> */}
-                      {/* </Select> */}
                     </FormControl>
                   </Stack>
                 </Stack>

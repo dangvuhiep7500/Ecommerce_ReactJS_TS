@@ -138,7 +138,7 @@ const Header: FC = () => {
               startIcon={<ShoppingCartIcon />}
               variant={"outlined"}
             >
-              <div className="header_typography">
+              <div className="header_cart">
                 Giỏ hàng({cartItems.length})
               </div>
             </Button>

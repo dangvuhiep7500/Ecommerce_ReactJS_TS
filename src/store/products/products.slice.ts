@@ -71,12 +71,17 @@ export const productsSlice = createSlice({
         } else if (state.filterValues.sort.toString() === 'Giá (Cao - Thấp)') {
           if (a.price < b.price) return 1;
           return -1;
+        } else if (state.filterValues.sort.toString() === 'Tên (A - Z)') {
+          if (a.title > b.title) return 1;
+          return -1;
+        } else if (state.filterValues.sort.toString() === 'Tên (Z - A)') {
+          if (a.title < b.title) return 1;
+          return -1;
         } else {
           if (a._id > b._id) return 1;
           return -1;
         }
       })
-
     },
     filterByCategory(state, action: PayloadAction<String>) {
       if (action.payload !== "") {

@@ -24,40 +24,42 @@ const FeaturedProduct2: FC = () => {
     setPage(value);
     _DATA.jump(value);
   };
-  
+
   return (
-    <Container maxWidth="lg" sx={{ mb: 2 }}>
-      <FeaturedTittle title="Tất cả sản phẩm" />
-      {isLoading ? (
-               <div className="col-3">
-               <div className="snippet" data-title=".dot-pulse">
-                 <div className="stage">
-                   <div className="dot-pulse"></div>
-                 </div>
-               </div>
-             </div>
-         ) : (
+    <Box className="container">
+      <Container sx={{ mb: 2 }}>
+        <FeaturedTittle title="Tất cả sản phẩm" />
+        {isLoading ? (
+          <div className="col-3">
+            <div className="snippet" data-title=".dot-pulse">
+              <div className="stage">
+                <div className="dot-pulse"></div>
+              </div>
+            </div>
+          </div>
+        ) : (
           <>
-          <Box sx={{ mb: 4 }}>
-          <Grid container>
-            {_DATA.currentData().map((product: IProduct) => (
-              <Product key={product._id} product={product} />
-            ))}
-          </Grid>
-        </Box>
-        {pageCount > 1 && (
-          <Pagination
-            style={{ display: "flex", justifyContent: "center" }}
-            onChange={handleChange}
-            count={pageCount}
-            variant="outlined"
-            shape="rounded"
-            page={page}
-          />
+            <Box sx={{ mb: 4 }}>
+              <Grid container>
+                {_DATA.currentData().map((product: IProduct) => (
+                  <Product key={product._id} product={product} />
+                ))}
+              </Grid>
+            </Box>
+            {pageCount > 1 && (
+              <Pagination
+                style={{ display: "flex", justifyContent: "center" }}
+                onChange={handleChange}
+                count={pageCount}
+                variant="outlined"
+                shape="rounded"
+                page={page}
+              />
+            )}
+          </>
         )}
-        </>
-         )}
-    </Container>
+      </Container>
+    </Box>
   );
 };
 
