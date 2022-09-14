@@ -23,7 +23,7 @@ export const userLogin = createAsyncThunk(
           },
         }
         const { data } = await axios.post(
-          'http://localhost:5000/users/login',
+          'https://node-api-ecommerce.vercel.app/users/login',
           { email, password },
           config
         )
@@ -47,7 +47,7 @@ export const userRegister = createAsyncThunk(
           },
         }
         await axios.post(
-          'http://localhost:5000/users/register',
+          'https://node-api-ecommerce.vercel.app/users/register',
           { lastName,firstName,phoneNumber,email, password },
           config
         )

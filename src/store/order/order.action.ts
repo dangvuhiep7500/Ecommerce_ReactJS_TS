@@ -30,7 +30,7 @@ export const orderProduct = createAsyncThunk(
           },
         }
         await axios.post(
-          'http://localhost:5000/order/create',
+          'https://node-api-ecommerce.vercel.app/order/create',
           { userId,products,customer,email, phoneNumber,note,address,status,totalQuantity, totalSum,customerReceiver, phoneReceiver, addressReceiver,payment },
           config
         )

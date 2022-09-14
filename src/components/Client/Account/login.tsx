@@ -78,7 +78,6 @@ const Login: FC = () => {
             type="email"
             label="Email"
             autoComplete="email"
-            autoFocus
             {...register("email", {
               required: "*Vui lòng nhập email",
               pattern: {

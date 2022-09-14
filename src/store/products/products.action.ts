@@ -6,7 +6,7 @@ export const fetchProducts = () => async (dispatch: AppDispatch) => {
    try {
       dispatch(startFetching())
       const response = await axios.get<IProduct[]>(
-         'http://localhost:5000/products'
+         'https://node-api-ecommerce.vercel.app/products'
       )
       dispatch(successFetching(response.data))
    } catch (e) {

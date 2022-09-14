@@ -6,7 +6,7 @@ export const fetchCategories = () => async (dispatch: AppDispatch) => {
    try {
       dispatch(startFetching())
       const response = await axios.get<ICategory[]>(
-         'http://localhost:5000/categories/category'
+         'https://node-api-ecommerce.vercel.app/categories/category'
       )
       dispatch(successFetching(response.data))
    } catch (e) {

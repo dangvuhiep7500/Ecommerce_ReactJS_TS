@@ -81,7 +81,6 @@ const Register: FC = () => {
               {...register("firstName", {
                 required: "*Vui lòng nhập tên",
               })}
-              autoFocus
             />
             <ErrorMessage
               errors={errors}
@@ -115,7 +114,6 @@ const Register: FC = () => {
               type="email"
               label="Email"
               autoComplete="email"
-              autoFocus
               {...register("email", {
                 required: "*Vui lòng nhập email",
                 pattern: {
