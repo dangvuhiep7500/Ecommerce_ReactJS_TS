@@ -1,52 +1,62 @@
 .header {
+    display: flex;
+    justify-content: center;
     border-bottom: 1px solid rgb(200, 200, 200);
+    @media only screen and (max-width: 1023px) {
+        display: flex;
+        justify-content: space-around;
+    }
+    &_navmenu {
+        display: none;
+        @media only screen and (max-width: 1023px) {
+            display: flex;
+            margin-left: 1rem;
+        }
+    }
+    &_name_cart {
+        @media only screen and (max-width: 1023px) {
+            display: none;
+        }
+    }
     &_navbarLogo {
         cursor: pointer;
     }
     &_img {
-        width: 250px;
+        width: 200px;
         height: 60px;
         margin: 20px;
-        @media (max-width: 1215px) {
+        @media only screen and (min-width: 740px) and (max-width: 1023px) {
             width: 200px;
             height: 50px;
-            margin: 20px;
+        }
+        @media only screen and (max-width: 739px) {
+            display: none;
         }
     }
     &_search {
         display: flex;
         padding: 0.1rem 0.3rem;
-        width: 20rem;
-        @media (max-width: 1215px) {
-            width: 14rem;
+        width: 18rem;
+        @media only screen and (min-width: 740px) and (max-width: 1023px) {
+            width: 20rem;
             padding: 0.1rem 0.1rem;
         }
-        @media (max-width: 992px) {
-            width: 25rem;
+        @media only screen and (max-width: 739px) {
+            width: 10rem;
         }
     }
     &_input_search {
         margin-left: 5px;
-        flex: 1
+        flex: 1;
     }
     &_custom-link:hover {
         color: red;
         text-decoration-color: red;
     }
     &_typography {
-        @media (max-width: 1215px) {
-            width: max-content;
-            font-size: smaller;
-        }
-        @media (max-width: 992px) {
+        @media only screen and (max-width: 1023px) {
             display: none;
         }
-    }
-}
-
-.menu {
-    @media (max-width: 992px) {
-        display: none;
     }
 }
 

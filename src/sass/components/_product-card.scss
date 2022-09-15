@@ -13,14 +13,7 @@
         height: 3em;
         overflow: hidden;
     }
-    // @media (max-width: 1220px) {
-    //     width: 14rem;
-    //     padding: 12px 15px;
-    // }
+    @media only screen and (max-width: 739px) {
+        width: 9rem;
+    }
 }
-
-// .container {
-//     @media (max-width: 1220px) {
-//         width: 80%;
-//     }
-// }

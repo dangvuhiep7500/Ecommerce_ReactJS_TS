@@ -48,9 +48,9 @@ const Category: FC = () => {
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2}>
-        <Grid item xs={2}>
+        <Grid item xs={2} className="category">
           <Box>
-            <ul className="menu">
+            <ul className="menu" >
               {categories.map((cate) => {
                 return <CategoryItem key={cate._id} category={cate} />;
               })}
@@ -58,17 +58,15 @@ const Category: FC = () => {
           </Box>
         </Grid>
         <Grid item xs={10}>
-          <Box>
-            <div className="trending">
+          <Box className="trending">
               <Slider {...settings}>
                 {Value.map((item, i) => {
                   return (
-                    <div key={i} className="trending-top">
+                    <div key={i} className="trending_top">
                       <Slider {...settings}>
                         <div>
-                          <img
+                          <img className="trending_img"
                             src={`${item.img}`}
-                            style={{ width: "inherit" }}
                           />
                         </div>
                       </Slider>
@@ -76,7 +74,6 @@ const Category: FC = () => {
                   );
                 })}
               </Slider>
-            </div>
           </Box>
         </Grid>
       </Grid>
