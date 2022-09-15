@@ -26,7 +26,7 @@ const CategoryItem: FC<Props> = ({ category }) => {
           <img
             src={category.categoryImage}
             alt={category.categoryImage}
-            style={{ width: 20, height: 18, paddingRight: 5 }}
+            style={{ width: 20, height: 18, paddingRight: 15 }}
           />
           <ListItemText
             disableTypography
