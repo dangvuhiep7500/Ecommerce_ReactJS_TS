@@ -167,7 +167,7 @@ const ProductDetailsView: React.FC<{ product: IProduct }> = ({ product }) => {
                 color: "grey",
               }}
             >
-              15,000,000đ
+              70.000.000đ
             </Typography>
           </Typography>
           <Typography variant="body1" gutterBottom component="div">

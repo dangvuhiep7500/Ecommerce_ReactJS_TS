@@ -1,0 +1,30 @@
+.product {
+    margin-top: 0.625em;
+    margin-bottom: 0.625em;
+}
+
+.productWrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 4.375em;
+    margin-left: 1.25em;
+}
+
+.productDescription {
+    width: 43.75em;
+}
+
+.productTitle {
+    margin-top: 0em;
+}
+
+.productText {
+    margin: 1.25em 0 2em 0;
+    width: 31.25em;
+    color: gray;
+}
+
+.productPrice {
+    width: 12.5em;
+    margin: 1.25em 0 1.25em 0;
+}

@@ -59,10 +59,10 @@ const CartProduct: FC<CartItemProps> = ({ product }) => {
             variant="outlined"
             onClick={increase}
             style={{
-              maxWidth: "15px",
-              maxHeight: "15px",
-              minWidth: "15px",
-              minHeight: "15px",
+              maxWidth: "1em",
+              maxHeight: "1em",
+              minWidth: "1em",
+              minHeight: "1em",
             }}
           >
             +
@@ -78,7 +78,7 @@ const CartProduct: FC<CartItemProps> = ({ product }) => {
             style={{
               paddingLeft: 10,
               paddingRight: 10,
-              maxWidth: "18px",
+              maxWidth: "1.125em",
             }}
           />
           <Button
@@ -86,10 +86,10 @@ const CartProduct: FC<CartItemProps> = ({ product }) => {
             variant="outlined"
             onClick={decrease}
             style={{
-              maxWidth: "15px",
-              maxHeight: "15px",
-              minWidth: "15px",
-              minHeight: "15px",
+              maxWidth: "1em",
+              maxHeight: "1em",
+              minWidth: "1em",
+              minHeight: "1em",
             }}
           >
             -

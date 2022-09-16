@@ -1,84 +1,116 @@
 .header {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid rgb(200, 200, 200);
-    @media only screen and (max-width: 1023px) {
-        display: flex;
-        justify-content: space-around;
-    }
+    border-bottom: 0.0625em solid rgb(200, 200, 200);
     &_navmenu {
         display: none;
-        @media only screen and (max-width: 1023px) {
-            display: flex;
-            margin-left: 1rem;
-        }
-    }
-    &_name_cart {
-        @media only screen and (max-width: 1023px) {
-            display: none;
-        }
     }
     &_navbarLogo {
         cursor: pointer;
     }
     &_img {
-        width: 200px;
-        height: 60px;
-        margin: 20px;
-        @media only screen and (min-width: 740px) and (max-width: 1023px) {
-            width: 200px;
-            height: 50px;
-        }
-        @media only screen and (max-width: 739px) {
-            display: none;
-        }
+        width: 12.5em;
+        height: 3.75em;
+        margin: 1.25em;
     }
     &_search {
         display: flex;
-        padding: 0.1rem 0.3rem;
-        width: 18rem;
-        @media only screen and (min-width: 740px) and (max-width: 1023px) {
-            width: 20rem;
-            padding: 0.1rem 0.1rem;
-        }
-        @media only screen and (max-width: 739px) {
-            width: 15rem;
-        }
-        @media only screen and (max-width: 376px) {
-            width: 12rem;
+        padding: 0.1em 0.3em;
+        width: 18em;
+        @media only screen and (max-width: 23.5em) {
+            width: 12em;
         }
     }
     &_input_search {
-        margin-left: 5px;
+        margin-left: 0.3125em;
         flex: 1;
     }
     &_custom-link:hover {
         color: red;
         text-decoration-color: red;
     }
-    &_typography {
-        @media only screen and (max-width: 1023px) {
+    @media only screen and (max-width: 63.9375em) {
+        display: flex;
+        justify-content: space-around;
+        &_name_cart {
             display: none;
+        }
+        &_navmenu {
+            margin-left: 1em;
+            display: flex;
+        }
+        &_typography {
+            display: none;
+        }
+    }
+    @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+        &_img {
+            width: 12.5em;
+            height: 3.125em;
+        }
+        &_search {
+            width: 20em;
+            padding: 0.1em 0.1em;
+        }
+    }
+    @media only screen and (max-width: 46.1875em) {
+        &_img {
+            display: none;
+        }
+        &_search {
+            width: 15em;
         }
     }
 }
 
 .headerSecond {
-    @media (max-width: 992px) {
+    &_dropbtn {
+        color: white;
+        padding: 1em;
+        font-size: 1em;
+        border: none;
+        cursor: pointer;
+    }
+    &_dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    &_dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 1em 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    &_dropdown-content &_a {
+        color: black;
+        text-decoration: none;
+        display: block;
+    }
+    &_dropdown-content &_a:hover {
+        background-color: #f1f1f1
+    }
+    /*  */
+    &_dropdown:hover &_dropdown-content {
+        display: block;
+    }
+    &_dropdown:hover &_dropbtn {
+        color: white;
+        background-color: gray;
+        text-decoration-color: red;
+    }
+    @media only screen and (max-width: 63.9375em) {
         display: none;
     }
     &_listcate {
-        border: 1px solid;
-        border-radius: 5px;
-        @media (max-width: 1215px) {
-            width: max-content;
-            font-size: small;
-        }
+        border: 0.0625em solid;
+        border-radius: 0.3125em;
     }
     &_custom-item {
-        margin-left: 1rem;
-        border: 1px solid;
-        border-radius: 5px;
+        margin-left: 1em;
+        border: 0.0625em solid;
+        border-radius: 0.3125em;
     }
     &_custom-item:hover {
         color: white;

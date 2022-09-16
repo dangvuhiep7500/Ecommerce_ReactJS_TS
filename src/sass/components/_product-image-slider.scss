@@ -24,7 +24,7 @@
     width: 80%;
     .swiper-slide {
         flex-shrink: 1;
-        border: 1px solid #dddbdb;
+        border: 0.0625em solid #dddbdb;
         cursor: pointer;
         &-thumb-active {
             border-color: #ff0000;

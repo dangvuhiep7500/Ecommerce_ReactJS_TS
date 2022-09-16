@@ -18,7 +18,7 @@ const CategoryItem: FC<Props> = ({ category }) => {
   return (
     <li>
       <ListItem
-        onClick={navigateToCategory}
+        // onClick={navigateToCategory}
         disablePadding
         className="custom-item"
       >

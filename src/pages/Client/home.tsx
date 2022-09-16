@@ -12,7 +12,6 @@ const Home: FC = () => {
         <LayoutHeader />
         <Category />
         <Featuredlist />
-        <FeaturedProduct />
         <FeaturedProduct2 />
         <Footer />
       </div>

@@ -30,7 +30,7 @@ const FeaturedTittle: FC<TitleProps> = ({ title }) => {
           color="white"
           fontWeight="bold"
         >
-          <Typography variant="h6">Xem tất cả {'>'}</Typography>
+          <Typography variant="h6">Xem tất cả</Typography>
         </Link>
       </Grid>
     </Box>

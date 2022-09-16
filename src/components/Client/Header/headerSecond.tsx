@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { Box, Button, Container, Menu, MenuItem, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-// import { makeStyles } from "@mui/styles";
 import PaymentIcon from "@mui/icons-material/Payment";
 import { useAppSelector } from "../../../hooks";
 import CategoryItem from "../Category/categoryItem";
@@ -16,9 +15,9 @@ const HeaderBot: FC = () => {
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box className="headerSecond_listcate">
-            <div className="dropdown">
+            <div className="headerSecond_dropdown">
               <Button
-                className="dropbtn"
+                className="headerSecond_dropbtn"
                 color="inherit"
                 startIcon={<MenuIcon />}
                 size="small"
@@ -26,7 +25,7 @@ const HeaderBot: FC = () => {
               >
                 Danh mục sản phẩm
               </Button>
-              <div className="dropdown-content">
+              <div className="headerSecond_dropdown-content">
                 <ul className="menu">
                   {categories.map((cate) => {
                     return <CategoryItem key={cate._id} category={cate} />;

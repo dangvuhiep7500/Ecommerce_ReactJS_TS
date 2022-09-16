@@ -1,6 +1,5 @@
 import { Box, Container, Grid } from "@mui/material";
 import { FC } from "react";
-// import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 const footerAboutLinks = [
   {
     display:
@@ -47,31 +46,8 @@ const footerCustomerLinks = [
     path: "/about",
   },
 ];
-// const footerLocalLinks = [
-//   {
-//     display: "Địa chỉ : 59h Nguyễn Kiệm, phường 3, quận Gò Vấp,",
-//     path: "/about",
-//   },
-//   {
-//     display: "Email: abc2000@gmail.com",
-//     path: "/about",
-//   },
-//   {
-//     display: "Hotline: 0948162500",
-//     path: "/about",
-//   },
-//   {
-//     display: "Giấy chứng nhân đăng ký Kinh doanh số",
-//     path: "/about",
-//   },
-//   {
-//     display: "0309532XXX do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp.",
-//     path: "/about",
-//   },
-// ];
 
 const Footer: FC = () => {
-  // const navigate = useNavigate()
   return (
     <footer>
       <Box
@@ -110,7 +86,6 @@ const Footer: FC = () => {
             <Grid item xs={12} sm={4}>
               <Box color="black" fontWeight="bold">Hỗ trợ khách hàng</Box>
               <Box>
-                
               </Box>
             </Grid>
           </Grid>

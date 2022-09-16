@@ -1,11 +1,8 @@
 import {
   Box,
-  Button,
   Card,
-  CardActionArea,
   CardMedia,
   CircularProgress,
-  Fab,
   Link,
   Stack,
   Typography,
@@ -17,7 +14,6 @@ import CheckIcon from '@mui/icons-material/Check';
 import { addProduct, ItemAdded, toggleItemAdded } from "../../../store/cart/cart.slice";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
-import SaveIcon from '@mui/icons-material/Save';
 interface Props {
   product: IProduct
 }
@@ -29,7 +25,6 @@ const Product: FC<Props> = ({
   product
 }) => {
   const navigate = useNavigate()
-  // const [count, setCount] = useState(1)
   const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

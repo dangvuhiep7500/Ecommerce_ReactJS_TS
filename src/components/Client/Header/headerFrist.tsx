@@ -17,7 +17,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PhoneIcon from "@mui/icons-material/Phone";
 import Link from "@mui/material/Link";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { searchFilter } from "../../../store/products/products.slice";
 import { logout } from "../../../store/auth/auth.slice";
 const Header: FC = () => {
@@ -37,13 +37,18 @@ const Header: FC = () => {
   const { successLogin } = useAppSelector((state) => state.authReducer);
   const user = useAppSelector((state) => state.authReducer.user);
   console.log(user?.user.firstName);
-
+  const [open, setOpen] = useState(false);
   return (
     <div className="header">
-      <div className="header_navmenu" >
-      <IconButton color="inherit" aria-label="open drawer" edge="start">
-        <MenuIcon />
-      </IconButton>
+      <div className="header_navmenu">
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={() => setOpen(!open)}
+        >
+          <MenuIcon />
+        </IconButton>
       </div>
       <Toolbar disableGutters>
         <Link onClick={() => navigate("/")} className={`header_navbarLogo`}>

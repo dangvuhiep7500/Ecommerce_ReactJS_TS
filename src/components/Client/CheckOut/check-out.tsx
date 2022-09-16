@@ -87,7 +87,7 @@ const CheckOut: FC = () => {
               <Grid
                 item
                 xs={12}
-                style={{ borderBottom: "1px solid rgb(200, 200, 200)" }}
+                style={{ borderBottom: "0.0625em solid rgb(200, 200, 200)" }}
               >
                 <Typography sx={{ mb: 1 }} variant="h6">
                   THÔNG TIN KHÁCH HÀNG
@@ -114,7 +114,7 @@ const CheckOut: FC = () => {
                     size="small"
                     autoComplete="given-name"
                     id="customer"
-                    defaultValue={"dang"}
+                    // defaultValue={"dang"}
                     placeholder="Nhập tên khách hàng"
                     style={{ width: 600, backgroundColor: "#e0e0e0" }}
                     {...register("customer", {
@@ -148,7 +148,7 @@ const CheckOut: FC = () => {
                     autoComplete="given-name"
                     id="email"
                     type="email"
-                    defaultValue={"dang@gmail.com"}
+                    // defaultValue={"dang@gmail.com"}
                     placeholder="Nhập email"
                     style={{ width: 600, backgroundColor: "#e0e0e0" }}
                     {...register("email", {
@@ -182,7 +182,7 @@ const CheckOut: FC = () => {
                     autoComplete="given-name"
                     id="phoneNumber"
                     type="number"
-                    defaultValue={"0123456486"}
+                    // defaultValue={"0123456486"}
                     placeholder="Nhập số điện thoại"
                     style={{ width: 600, backgroundColor: "#e0e0e0" }}
                     {...register("phoneNumber", {
@@ -216,7 +216,7 @@ const CheckOut: FC = () => {
                       size="small"
                       autoComplete="given-name"
                       id="address"
-                      defaultValue={"abczxc"}
+                      // defaultValue={"abczxc"}
                       placeholder="Nhập địa chỉ"
                       style={{ width: 600, backgroundColor: "#e0e0e0" }}
                       {...register("address", {
@@ -413,17 +413,17 @@ const CheckOut: FC = () => {
                   Tại ngân hàng Techcombank <br/>
                 </Typography>
                 <Typography  variant="body1">
-                 Số tài khoản: 0123456789987 <br/>
+                 Số tài khoản: 0456746494 <br/>
                  Chủ TK: Nguyễn Văn A.
                 </Typography>
                 </Box>
                 <Box marginLeft={4}>
                 <Typography fontWeight={500} variant="body1">
-                  Tại ngân hàng Techcombank <br/>
+                  Tại ngân hàng VietComBank <br/>
                 </Typography>
                 <Typography  variant="body1">
-                 Số tài khoản: 0123456789987 <br/>
-                 Chủ TK: Nguyễn Văn A.
+                 Số tài khoản: 0126494764 <br/>
+                 Chủ TK: Nguyễn Văn B.
                 </Typography>
                 </Box>
               </Grid>
@@ -437,7 +437,7 @@ const CheckOut: FC = () => {
               padding={3}
             >
               <Box
-                style={{ borderBottom: "1px solid rgb(200, 200, 200)" }}
+                style={{ borderBottom: "0.0625em solid rgb(200, 200, 200)" }}
                 paddingBottom={2}
               >
                 <Typography variant="h6">THÔNG TIN GIỎ HÀNG</Typography>

@@ -9,13 +9,6 @@ const FeaturedProduct2: FC = () => {
   const { isLoading, filteredProducts } = useAppSelector(
     (state) => state.productsReducer
   );
-  // const [loading, setLoading] = useState(false)
-  // useEffect(() =>{
-  //   setLoading(true)
-  //   setTimeout(() =>{
-  //     setLoading(false)
-  //   },5000)
-  // },[])
   const [page, setPage] = useState(1);
   const PER_PAGE = 10;
   const pageCount = Math.ceil(filteredProducts.length / PER_PAGE);

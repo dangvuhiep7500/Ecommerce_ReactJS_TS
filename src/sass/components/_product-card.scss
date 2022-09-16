@@ -1,19 +1,19 @@
 .CardProduct {
     width: 13.4rem;
-    margin: 15px 8px;
+    margin: 0.9375em 0.5em;
     &_img {
         cursor: pointer;
-        height: 215;
-        width: 215;
+        height: 13.4375em;
+        width: 13.4375em;
     }
     &_title {
         cursor: pointer;
-        padding: 3px;
+        padding: 0.1875em;
         line-height: 1.5em;
         height: 3em;
         overflow: hidden;
     }
-    @media only screen and (max-width: 739px) {
+    @media only screen and (max-width: 46.1875em) {
         width: 9rem;
     }
 }

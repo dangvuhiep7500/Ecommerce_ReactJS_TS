@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./sass/index.scss";
+import "./sass/_base.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AppRoutes from "./components/Client/Routes/AppRoutes";

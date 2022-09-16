@@ -1,13 +1,13 @@
 .trending {
-    margin-left: 1rem;
-    @media only screen and (min-width: 740px) and (max-width: 1023px) {
-        margin-right: 15rem;
-        width: 50rem;
+    margin-left: 1em;
+    @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+        margin-right: 15em;
+        width: 50em;
     }
 }
 
 .category {
-    @media only screen and (max-width: 1023px) {
+    @media only screen and (max-width: 63.9375em) {
         display: none;
     }
 }
@@ -16,7 +16,7 @@
     position: relative;
     padding: 0 0 0 0;
     margin: 0;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.125em 0.25em 0 rgba(0, 0, 0, 0.2);
     width: max-content;
 }
 
@@ -56,12 +56,12 @@ span {
     visibility: hidden;
     position: absolute;
     list-style: none;
-    top: 0px;
-    left: 11.40rem;
-    width: 800px;
+    top: 0;
+    left: 11.40em;
+    width: 50em;
     min-height: 100%;
     text-align: left;
-    margin-top: 30px;
+    margin-top: 1.875em;
     padding: 0;
     z-index: 99;
     overflow: hidden;
@@ -71,7 +71,7 @@ span {
 .menu>li:hover .megadrop {
     opacity: 1;
     visibility: visible;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .menu .col .submenu:hover,
@@ -86,30 +86,30 @@ span {
 }
 
 .menu .col ul {
-    padding: 15px 0 0 0;
+    padding: 0.9375em 0 0 0;
 }
 
 .menu .col ul li {
     padding: 0;
     list-style: none;
-    font-size: 11px;
+    font-size: 0.6875em;
 }
 
 .menu .col .title {
-    font-size: 22px;
+    font-size: 1.375em;
     cursor: pointer;
     color: #005ec4;
 }
 
 .menu .col .submenu {
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
     color: black;
 }
 
 .menu .col ul li a {
     display: block;
-    padding: 0 0 15px 0;
+    padding: 0 0 0.9375em 0;
     color: black;
 }
 

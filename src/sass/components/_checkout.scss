@@ -1,0 +1,11 @@
+.text-checkout::after {
+    display: inline;
+    content: " *";
+    color: red;
+}
+
+.text-note::before {
+    display: inline;
+    content: " *";
+    color: red;
+}
