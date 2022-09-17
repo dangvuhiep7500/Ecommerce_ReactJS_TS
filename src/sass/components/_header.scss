@@ -142,10 +142,13 @@
     bottom: 0;
     background-color: rgb(0, 0, 0, 0.3);
     display: none;
+    z-index: 1;
+    animation: fadeIn linear 0.2s;
 }
 
 .nav__mobile {
     position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     bottom: 0;
@@ -153,10 +156,12 @@
     max-width: 100%;
     background-color: #fff;
     transform: translateX(-100%);
+    opacity: 0;
+    transition: transform linear 0.3s, opacity linear 0.3s;
 }
 
 .nav__mobile-list {
-    margin-top: 24px;
+    margin-right: 0;
 }
 
 .nav__mobile-link {
@@ -172,6 +177,7 @@
     position: absolute;
     top: 1em;
     right: 1em;
+    cursor: pointer;
 }
 
 .nav__input {
@@ -184,4 +190,27 @@
 
 .nav__input:checked~.nav__mobile {
     transform: translateX(0%);
+    opacity: 1;
+}
+
+.nav__mobile-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.sidebar__nav__logo {
+    font-size: 2rem;
+    padding-left: 20px;
+    font-weight: bold;
+    text-decoration: none;
 }

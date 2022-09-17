@@ -24,10 +24,12 @@ function ElevationScroll(props: Props) {
 const LayoutHeader: FC = () => {
   return (
     <ElevationScroll>
+    <div className="header">
       <AppBar position="sticky" color="default" >
         <Header></Header>
         <HeaderBot></HeaderBot>
       </AppBar>
+    </div>
     </ElevationScroll>
   );
 };

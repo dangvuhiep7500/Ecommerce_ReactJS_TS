@@ -8,13 +8,13 @@ import FeaturedProduct from "../../components/Client/FeaturedProduct/featuredPro
 
 const Home: FC = () => {
     return (
-      <div>
+      <>
         <LayoutHeader />
         <Category />
         <Featuredlist />
         <FeaturedProduct2 />
         <Footer />
-      </div>
+      </>
     );
   }
   

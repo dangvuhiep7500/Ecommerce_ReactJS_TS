@@ -16,7 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PhoneIcon from "@mui/icons-material/Phone";
 import Link from "@mui/material/Link";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { NavLink, useNavigate } from "react-router-dom";
 import { searchFilter } from "../../../store/products/products.slice";
@@ -41,49 +41,54 @@ const Header: FC = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="header">
-      <div  className="header_navmenu">
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-        >
-          <label htmlFor="nav-mobile-input">
+      <div className="header_navmenu">
+        <label className="nav__mobile-icon" htmlFor="nav-mobile-input">
           <MenuIcon />
-          </label>
-        </IconButton>
-      </div>
-      <Toolbar disableGutters>
-         {/* navmobile */}
-         <input type="checkbox" className="nav__input" name=""  id="nav-mobile-input" />
+        </label>
+        <input
+          type="checkbox"
+          className="nav__input"
+          name=""
+          id="nav-mobile-input"
+        />
         <label htmlFor="nav-mobile-input" className="nav__overlay"></label>
         <div className="nav__mobile">
           <label htmlFor="nav-mobile-input" className="nav__mobile-close">
-          <CloseIcon />
+            <CloseIcon />
           </label>
-          <ul className="nav__mobile-list">
-            <li className="nav__mobile-item">
-              <NavLink className="nav__mobile-link" to="/">
-                Home
-              </NavLink>
-            </li>
-            <li className="nav__mobile-item">
-              <NavLink className="nav__mobile-link" to="/products">
-                Products
-              </NavLink>
-            </li>
-            <li className="nav__mobile-item">
-              <NavLink className="nav__mobile-link" to="/about">
-                About
-              </NavLink>
-            </li>
-            <li className="nav__mobile-item">
-              <NavLink className="nav__mobile-link" to="/contact">
-                Contact
-              </NavLink>
-            </li>
-          </ul>
+          <NavLink className="sidebar__nav__logo" to="/">
+            Ecommerce
+          </NavLink>
+            <Stack direction="row" alignItems="center" gap={1} color="black">
+            <PersonIcon fontSize="large" />
+                <Link
+                  className="header_custom-link"
+                  href="#"
+                  underline="none"
+                  color="black"
+                  fontWeight="bold"
+                  onClick={() => navigate("/register")}
+                >
+                 Đăng ký
+                </Link>
+            <PersonIcon fontSize="large" />
+                <Link
+                  className="header_custom-link"
+                  href="#"
+                  underline="none"
+                  color="black"
+                  fontWeight="bold"
+                  onClick={() => navigate("/login")}
+                >
+                 Đăng nhập
+                </Link>
+            </Stack>
+            {/* <NavLink className="nav__mobile-link" to="/">
+              Home <br />
+            </NavLink> */}
         </div>
-        {/*  */}
+      </div>
+      <Toolbar disableGutters>
         <Link onClick={() => navigate("/")} className={`header_navbarLogo`}>
           <Box
             className="header_img"
