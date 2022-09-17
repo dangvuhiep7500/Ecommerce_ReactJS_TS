@@ -41,23 +41,25 @@ const Header: FC = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="header">
-      <div className="header_navmenu">
+      <div  className="header_navmenu">
         <IconButton
           color="inherit"
           aria-label="open drawer"
           edge="start"
-          onClick={() => setOpen(!open)}
         >
+          <label htmlFor="nav-mobile-input">
           <MenuIcon />
+          </label>
         </IconButton>
       </div>
       <Toolbar disableGutters>
          {/* navmobile */}
-        {/* <div className="nav__overlay"></div>
+         <input type="checkbox" className="nav__input" name=""  id="nav-mobile-input" />
+        <label htmlFor="nav-mobile-input" className="nav__overlay"></label>
         <div className="nav__mobile">
-          <div className="nav__mobile-close">
+          <label htmlFor="nav-mobile-input" className="nav__mobile-close">
           <CloseIcon />
-          </div>
+          </label>
           <ul className="nav__mobile-list">
             <li className="nav__mobile-item">
               <NavLink className="nav__mobile-link" to="/">
@@ -69,7 +71,6 @@ const Header: FC = () => {
                 Products
               </NavLink>
             </li>
-
             <li className="nav__mobile-item">
               <NavLink className="nav__mobile-link" to="/about">
                 About
@@ -81,7 +82,7 @@ const Header: FC = () => {
               </NavLink>
             </li>
           </ul>
-        </div> */}
+        </div>
         {/*  */}
         <Link onClick={() => navigate("/")} className={`header_navbarLogo`}>
           <Box
