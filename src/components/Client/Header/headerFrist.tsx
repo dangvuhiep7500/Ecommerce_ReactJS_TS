@@ -16,6 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PhoneIcon from "@mui/icons-material/Phone";
 import Link from "@mui/material/Link";
+import CloseIcon from '@mui/icons-material/Close';
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { NavLink, useNavigate } from "react-router-dom";
 import { searchFilter } from "../../../store/products/products.slice";
@@ -51,12 +52,42 @@ const Header: FC = () => {
         </IconButton>
       </div>
       <Toolbar disableGutters>
+         {/* navmobile */}
+        {/* <div className="nav__overlay"></div>
+        <div className="nav__mobile">
+          <div className="nav__mobile-close">
+          <CloseIcon />
+          </div>
+          <ul className="nav__mobile-list">
+            <li className="nav__mobile-item">
+              <NavLink className="nav__mobile-link" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav__mobile-item">
+              <NavLink className="nav__mobile-link" to="/products">
+                Products
+              </NavLink>
+            </li>
+
+            <li className="nav__mobile-item">
+              <NavLink className="nav__mobile-link" to="/about">
+                About
+              </NavLink>
+            </li>
+            <li className="nav__mobile-item">
+              <NavLink className="nav__mobile-link" to="/contact">
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </div> */}
+        {/*  */}
         <Link onClick={() => navigate("/")} className={`header_navbarLogo`}>
           <Box
             className="header_img"
             component="img"
             src="https://theme.hstatic.net/1000284798/1000807193/14/logo.png?v=714"
-            alt=""
           />
         </Link>
         <Box pr={2}>
