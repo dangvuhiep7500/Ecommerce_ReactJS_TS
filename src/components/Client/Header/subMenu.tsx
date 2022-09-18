@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -18,38 +18,18 @@ const item = [
     iconOpened: <KeyboardArrowUpIcon />,
   },
 ];
-
-const SidebarLabel = styled.span`
-  margin-left: 16px;
-  color: black;
-  &:hover {
-    color: #fff;
-  }
-`;
-
-const DropdownLink = styled(Link)`
-  background: #414757;
-  height: 60px;
-  padding-left: 3rem;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #f5f5f5;
-  font-size: 18px;
-  &:hover {
-    background: #632ce4;
-    cursor: pointer;
-  }
-`;
-
 const SubMenu: FC<Props> = ({ category }) => {
   const [subnav, setSubnav] = useState(false);
 
   const showSubnav = () => setSubnav(!subnav);
-
+  const navigate = useNavigate();
   return (
     <>
-      <ListItem onClick={category.children && showSubnav} disablePadding className="nav__mobile-submenu">
+      <ListItem
+        onClick={category.children && showSubnav}
+        disablePadding
+        className="nav__mobile-navmenu"
+      >
         <ListItemButton>
           <ListItemText
             disableTypography
@@ -73,9 +53,17 @@ const SubMenu: FC<Props> = ({ category }) => {
       {subnav &&
         category.children.map((item, index) => {
           return (
-            <DropdownLink to="#" key={index}>
-              <SidebarLabel>{item.categoryName}</SidebarLabel>
-            </DropdownLink>
+            <label htmlFor="nav-mobile-input">
+              <ListItem disablePadding className="nav__mobile-submenu">
+                <ListItemButton>
+                  <ListItemText
+                    onClick={() => navigate(`/${item.slug}`)}
+                    disableTypography
+                    primary={<span>{item.categoryName}</span>}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </label>
           );
         })}
     </>

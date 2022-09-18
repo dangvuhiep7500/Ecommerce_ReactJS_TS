@@ -219,12 +219,23 @@
     color: #333;
 }
 
-.nav__mobile-submenu {
-    color: black;
+.nav__mobile-navmenu {
+    color: rgb(49, 45, 45);
     font-weight: bold;
 }
 
+.nav__mobile-submenu {
+    color: black;
+    font-weight: 800;
+    padding-left: 1em;
+}
+
 .nav__mobile-submenu:hover {
+    color: white;
+    background-color: #005EC4;
+}
+
+.nav__mobile-navmenu:hover {
     color: white;
     background-color: #005EC4;
 }
