@@ -21,6 +21,8 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { NavLink, useNavigate } from "react-router-dom";
 import { searchFilter } from "../../../store/products/products.slice";
 import { logout } from "../../../store/auth/auth.slice";
+import CategoryItem from "../Category/categoryItem";
+import SubMenu from "./subMenu";
 const Header: FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useAppDispatch();
@@ -39,6 +41,10 @@ const Header: FC = () => {
   const user = useAppSelector((state) => state.authReducer.user);
   console.log(user?.user.firstName);
   const [open, setOpen] = useState(false);
+  const { isLoading, categories } = useAppSelector(
+    (state) => state.categoriesReducer
+  );
+
   return (
     <div className="header">
       <div className="header_navmenu">
@@ -59,33 +65,39 @@ const Header: FC = () => {
           <NavLink className="sidebar__nav__logo" to="/">
             Ecommerce
           </NavLink>
-            <Stack direction="row" alignItems="center" gap={1} color="black">
+          <Stack direction="row" alignItems="center" gap={1} color="black">
             <PersonIcon fontSize="large" />
-                <Link
-                  className="header_custom-link"
-                  href="#"
-                  underline="none"
-                  color="black"
-                  fontWeight="bold"
-                  onClick={() => navigate("/register")}
-                >
-                 Đăng ký
-                </Link>
+            <Link
+              className="header_custom-link"
+              href="#"
+              underline="none"
+              color="black"
+              fontWeight="bold"
+              onClick={() => navigate("/register")}
+            >
+              Đăng ký
+            </Link>
             <PersonIcon fontSize="large" />
-                <Link
-                  className="header_custom-link"
-                  href="#"
-                  underline="none"
-                  color="black"
-                  fontWeight="bold"
-                  onClick={() => navigate("/login")}
-                >
-                 Đăng nhập
-                </Link>
-            </Stack>
-            {/* <NavLink className="nav__mobile-link" to="/">
+            <Link
+              className="header_custom-link"
+              href="#"
+              underline="none"
+              color="black"
+              fontWeight="bold"
+              onClick={() => navigate("/login")}
+            >
+              Đăng nhập
+            </Link>
+          </Stack>
+          {/* <NavLink className="nav__mobile-link" to="/">
               Home <br />
             </NavLink> */}
+          <Box>
+              {categories.map((cate) => {
+                return <SubMenu key={cate._id} category={cate} />;
+              })}
+          </Box>
+
         </div>
       </div>
       <Toolbar disableGutters>
