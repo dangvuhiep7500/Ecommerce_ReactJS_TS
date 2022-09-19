@@ -58,7 +58,13 @@
             display: none;
         }
         &_search {
-            width: 15em;
+            margin-left: 0.5em;
+            width: 13em;
+        }
+    }
+    @media only screen and (min-width: 37.5em) and (max-width: 50em) {
+        &_search {
+            width: 23em;
         }
     }
 }

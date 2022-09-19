@@ -1,8 +1,7 @@
 .trending {
     margin-left: 1em;
-    @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-        margin-right: 15em;
-        width: 50em;
+    @media only screen and (max-width: 63.9375em) {
+        display: none;
     }
 }
 

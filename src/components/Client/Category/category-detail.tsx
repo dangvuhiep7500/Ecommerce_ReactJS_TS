@@ -86,20 +86,21 @@ const CategoryDetail: FC = () => {
     );
   } else if (subcate) {
     return (
-      <Container maxWidth="lg">
+      <Container >
         {subcate.map((sub) =>
           sub.children.map((subcate) => {
             return subcate.slug === String(slug) ? (
-              <Box key={subcate._id} sx={{ mb: 4 }}>
+              <Box key={subcate._id} sx={{ mb: 4 }} >
                 <Stack
-                  direction="row"
-                  alignItems="center"
+                  direction={{xs: "column", md: "row"}}
                   sx={{ display: "flex", justifyContent: "space-between" }}
+                  className="category__product-list"
                 >
-                  <Box>
+                  <div className="category__product-title">
                     <Typography variant="h4">{subcate.categoryName}</Typography>
-                  </Box>
-                  <Stack direction="row" alignItems="center">
+                  </div>
+                  <div className="category__product-sort">
+                  <Stack direction="row" alignItems="center" >
                     <Typography fontWeight={600} variant="body1">
                       Sắp xếp theo:
                     </Typography>
@@ -119,6 +120,7 @@ const CategoryDetail: FC = () => {
                       />
                     </FormControl>
                   </Stack>
+                  </div>
                 </Stack>
                 <Grid container>
                   {_DATA.currentData().map((product: IProduct) => {

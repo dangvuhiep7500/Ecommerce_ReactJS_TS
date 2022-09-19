@@ -39,7 +39,7 @@ const Cart: FC = () => {
   }, [totalQuantity]);
   return (
     <Container maxWidth="lg" sx={{ mt: 2 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} direction={{ xs: 'column', md: 'row' }}>
         <Grid item xs={8}>
           <Typography variant="h6">THÔNG TIN SẢN PHẨM</Typography>
           {isEmpty ? (

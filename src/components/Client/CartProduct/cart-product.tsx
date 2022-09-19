@@ -44,7 +44,7 @@ const CartProduct: FC<CartItemProps> = ({ product }) => {
       </Stack>
 
       <Stack
-        paddingLeft={12}
+        paddingLeft={{ xs: 0, md: 12 }}
         direction="row"
         sx={{
           display: "flex",

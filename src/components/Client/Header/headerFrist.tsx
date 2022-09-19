@@ -40,7 +40,6 @@ const Header: FC = () => {
   const { successLogin } = useAppSelector((state) => state.authReducer);
   const user = useAppSelector((state) => state.authReducer.user);
   console.log(user?.user.firstName);
-  const [open, setOpen] = useState(false);
   const { isLoading, categories } = useAppSelector(
     (state) => state.categoriesReducer
   );
@@ -89,26 +88,23 @@ const Header: FC = () => {
               Đăng nhập
             </Link>
           </Stack>
-          {/* <NavLink className="nav__mobile-link" to="/">
-              Home <br />
-            </NavLink> */}
           <Box>
-              {categories.map((cate) => {
-                return <SubMenu key={cate._id} category={cate} />;
-              })}
+            {categories.map((cate) => {
+              return <SubMenu key={cate._id} category={cate} />;
+            })}
           </Box>
-
         </div>
       </div>
       <Toolbar disableGutters>
         <Link onClick={() => navigate("/")} className={`header_navbarLogo`}>
           <Box
             className="header_img"
+            pr={{ xs: 1, md: 1 }}
             component="img"
             src="https://theme.hstatic.net/1000284798/1000807193/14/logo.png?v=714"
           />
         </Link>
-        <Box pr={2}>
+        <Box pr={{ xs: 1, md: 1 }} >
           <Paper className="header_search" component="form">
             <InputBase
               onChange={onChangeSearch}
@@ -122,7 +118,7 @@ const Header: FC = () => {
           </Paper>
         </Box>
         <div className="header_typography">
-          <Box pr={2}>
+          <Box pr={{ xs: 1, md: 2 }}>
             <Stack direction="row" alignItems="center" gap={1} color="black">
               <PhoneIcon fontSize="large" />
               <Typography gutterBottom component="div" variant="body2">

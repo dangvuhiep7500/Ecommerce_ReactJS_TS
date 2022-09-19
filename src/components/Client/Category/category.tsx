@@ -6,7 +6,6 @@ import CategoryItem from "./categoryItem";
 
 const Category: FC = () => {
   const settings = {
-    className: "slider",
     infinite: true,
     arrows: false,
     slidesToScroll: 1,
@@ -16,9 +15,13 @@ const Category: FC = () => {
     autoplaySpeed: 3500,
     responsive: [
       {
+        breakpoint: 1024,
+        settings: {
+        },
+      },
+      {
         breakpoint: 767,
         settings: {
-          dots: false,
         },
       },
     ],
@@ -47,7 +50,7 @@ const Category: FC = () => {
 
   return (
     <Container maxWidth="lg">
-      <Grid container spacing={2}>
+      <Grid container spacing={2}  >
         <Grid item xs={2} className="category">
           <Box>
             <ul className="menu" >
@@ -57,7 +60,7 @@ const Category: FC = () => {
             </ul>
           </Box>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={8}>
           <Box className="trending">
               <Slider {...settings}>
                 {Value.map((item, i) => {
