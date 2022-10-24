@@ -5,6 +5,7 @@ import authReducer from './auth/auth.slice'
 import productsReducer from './products/products.slice'
 import categoriesReducer from './category/categories.slice'
 import storage from "redux-persist/lib/storage";
+import thunkMiddleware from 'redux-thunk';
 import { persistReducer } from "redux-persist";
 const persistConfig = {
   key: "root",
@@ -27,7 +28,7 @@ const combinedReducers = combineReducers({
   cartReducer: persistReducer(cartpersistConfig, cartReducer),
   categoriesReducer,
   // authReducer,
-  authReducer: persistReducer(userPersistConfig, authReducer)
+  authReducer: persistReducer(userPersistConfig, authReducer),
 });
 // const persistedReducer = persistReducer(persistConfig, combinedReducers);
 export const store = configureStore({

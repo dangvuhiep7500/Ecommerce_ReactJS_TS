@@ -67,11 +67,11 @@ const CheckOut: FC = () => {
       totalSum: totalSum,
     },
   });
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
   const submitForm = async (data: FormInputs) => {
     try {
-      await dispatch(orderProduct(data));
+      dispatch(orderProduct(data));
       navigate("/");
       dispatch(clearCart());
     } catch (e: any) {

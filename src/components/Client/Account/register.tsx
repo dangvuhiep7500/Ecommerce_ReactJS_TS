@@ -26,7 +26,7 @@ const Register: FC = () => {
   const { isLoading, error, successRegister } = useAppSelector(
     (state) => state.authReducer
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
 
   const {

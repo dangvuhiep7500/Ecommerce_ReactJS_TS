@@ -25,7 +25,7 @@ const Login: FC = () => {
     (state) => state.authReducer
   );
   // const { register, handleSubmit } = useForm()
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
   const submitForm = async (data: any) => {
     dispatch(userLogin(data));
