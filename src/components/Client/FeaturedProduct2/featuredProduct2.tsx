@@ -19,7 +19,7 @@ const FeaturedProduct2: FC = () => {
   };
 
   return (
-    <Box className="container">
+    <div className="container">
       <Container sx={{ mb: 2 }}>
         <FeaturedTittle title="Tất cả sản phẩm" />
         {isLoading ? (
@@ -32,13 +32,11 @@ const FeaturedProduct2: FC = () => {
           </div>
         ) : (
           <>
-            <Box sx={{ mb: 4 }}>
-              <Grid container>
+              <Grid container className="container_products">
                 {_DATA.currentData().map((product: IProduct) => (
                   <Product key={product._id} product={product} />
                 ))}
               </Grid>
-            </Box>
             {pageCount > 1 && (
               <Pagination
                 style={{ display: "flex", justifyContent: "center" }}
@@ -52,7 +50,7 @@ const FeaturedProduct2: FC = () => {
           </>
         )}
       </Container>
-    </Box>
+    </div>
   );
 };
 
