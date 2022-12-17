@@ -7,24 +7,13 @@ import FeaturedProduct2 from "../../components/Client/FeaturedProduct2/featuredP
 import FeaturedProduct from "../../components/Client/FeaturedProduct/featuredProduct";
 
 const Home: FC = () => {
-  const [isLoding, setIsLoding] = useState(true);
-  setTimeout(() => {
-    setIsLoding(false);
-  }, 3000);
     return (
       <>
-        {isLoding ? (
-       <div className="loader"></div>
-      ) : (
-        <>
         <LayoutHeader />
         <Category />
         <Featuredlist />
         <FeaturedProduct2 />
         <Footer />
-        </>
-      )}
-     
       </>
     );
   }

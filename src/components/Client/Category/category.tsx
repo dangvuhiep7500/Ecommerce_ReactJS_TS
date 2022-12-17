@@ -49,6 +49,10 @@ const Category: FC = () => {
   );
 
   return (
+    <>
+    {isLoading ? (
+       <div className="loader"></div>
+      ) : (
     <Container maxWidth="lg">
       <Grid container spacing={2}  >
         <Grid item xs={2} className="category">
@@ -81,6 +85,8 @@ const Category: FC = () => {
         </Grid>
       </Grid>
     </Container>
+    )} 
+    </>
   );
 };
 export default Category;
