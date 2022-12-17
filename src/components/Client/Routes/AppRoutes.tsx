@@ -6,6 +6,7 @@ import CheckOutPage from '../../../pages/Client/checkout'
 import Detail from '../../../pages/Client/detail'
 import Home from '../../../pages/Client/home'
 import LoginPage from '../../../pages/Client/login'
+import Pay from '../../../pages/Client/pay'
 import RegisterPage from '../../../pages/Client/register'
 import ScrollToTop from '../../SrcollToTop/scolltotop'
 
@@ -22,6 +23,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<LoginPage />}></Route>
       <Route path="/register" element={<RegisterPage />}></Route>
       <Route path="/checkout" element={<CheckOutPage />}></Route>
+      <Route path="/pay" element={<Pay />}></Route>
       {/* 
       <Route path="/bill" element={<Bill />} />
       <Route path="/bill/:id" element={<SingleBill />} />

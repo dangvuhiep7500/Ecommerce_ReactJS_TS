@@ -5,11 +5,13 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import { useAppSelector } from "../../../hooks";
 import CategoryItem from "../Category/categoryItem";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { useNavigate } from "react-router-dom";
 
 const HeaderBot: FC = () => {
   const { isLoading, categories } = useAppSelector(
     (state) => state.categoriesReducer
   );
+  const navigate = useNavigate();
   return (
     <div className="headerSecond">
       <Container maxWidth="lg">
@@ -52,8 +54,9 @@ const HeaderBot: FC = () => {
               startIcon={<PaymentIcon />}
               size="small"
               sx={{ paddingLeft: 2, paddingRight: 2 }}
+              onClick={() => navigate("/pay")}
             >
-              Chính sách vận chuyển
+              Hướng dẫn trả góp
             </Button>
           </Box>
           <Box className="headerSecond_custom-item">
@@ -65,6 +68,17 @@ const HeaderBot: FC = () => {
               sx={{ paddingLeft: 2, paddingRight: 2 }}
             >
               Đổi trả và bảo hành
+            </Button>
+          </Box>
+          <Box className="headerSecond_custom-item">
+            <Button
+              className="headerSecond_button-item"
+              color="inherit"
+              startIcon={<PaymentIcon />}
+              size="small"
+              sx={{ paddingLeft: 2, paddingRight: 2 }}
+            >
+                Chính sách vận chuyển
             </Button>
           </Box>
         </Toolbar>
